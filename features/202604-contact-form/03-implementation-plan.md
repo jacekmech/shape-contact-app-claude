@@ -16,7 +16,7 @@
 ## Slices
 
 - [x] Slice 1 — Backend core
-- [ ] Slice 2 — Backend tests
+- [x] Slice 2 — Backend tests
 - [ ] Slice 3 — Frontend
 - [ ] Slice 4 — Ops
 
@@ -40,8 +40,8 @@ Extend the backend with the domain validation module, mailer infra adapter, cont
 
 Add unit and integration test coverage for the backend contact flow.
 
-- [ ] Create `contact-api/tests/contact.domain.test.js` — unit tests for `src/domain/contact.js`; cases: missing name returns `errors.name`, whitespace-only name returns `errors.name` (trim check), missing email returns `errors.email`, invalid email format returns `errors.email`, missing message returns `errors.message`, whitespace-only message returns `errors.message` (trim check), all fields valid returns `null`, multiple invalid fields returns all errors in one object
-- [ ] Create `contact-api/tests/contact.api.test.js` — Supertest tests for `POST /api/contact`; mock `../src/infra/mailer` with `jest.mock`; cases: valid body + mailer resolves → 200 `{ success: true }`, all fields missing → 422 `{ success: false, errors }` with all three field keys present, invalid email only → 422 with `errors.email`, mailer throws → 500 `{ success: false, error: 'Failed to send message' }`
+- [x] Create `contact-api/tests/contact.domain.test.js` — unit tests for `src/domain/contact.js`; cases: missing name returns `errors.name`, whitespace-only name returns `errors.name` (trim check), missing email returns `errors.email`, invalid email format returns `errors.email`, missing message returns `errors.message`, whitespace-only message returns `errors.message` (trim check), all fields valid returns `null`, multiple invalid fields returns all errors in one object
+- [x] Create `contact-api/tests/contact.api.test.js` — Supertest tests for `POST /api/contact`; mock `../src/infra/mailer` with `jest.mock`; cases: valid body + mailer resolves → 200 `{ success: true }`, all fields missing → 422 `{ success: false, errors }` with all three field keys present, invalid email only → 422 with `errors.email`, mailer throws → 500 `{ success: false, error: 'Failed to send message' }`
 
 ### Slice 3 — Frontend
 

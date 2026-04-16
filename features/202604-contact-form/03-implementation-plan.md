@@ -40,8 +40,8 @@ Extend the backend with the domain validation module, mailer infra adapter, cont
 
 Add unit and integration test coverage for the backend contact flow.
 
-- [ ] Create `contact-api/tests/contact.domain.test.js` — unit tests for `domain/contact.js`: missing name, missing email, invalid email format, missing message, all fields valid
-- [ ] Create `contact-api/tests/contact.api.test.js` — Supertest integration tests: valid submission (mock mailer returns success), 422 on invalid input, 500 on mailer throw
+- [ ] Create `contact-api/tests/contact.domain.test.js` — unit tests for `src/domain/contact.js`; cases: missing name returns `errors.name`, whitespace-only name returns `errors.name` (trim check), missing email returns `errors.email`, invalid email format returns `errors.email`, missing message returns `errors.message`, whitespace-only message returns `errors.message` (trim check), all fields valid returns `null`, multiple invalid fields returns all errors in one object
+- [ ] Create `contact-api/tests/contact.api.test.js` — Supertest tests for `POST /api/contact`; mock `../src/infra/mailer` with `jest.mock`; cases: valid body + mailer resolves → 200 `{ success: true }`, all fields missing → 422 `{ success: false, errors }` with all three field keys present, invalid email only → 422 with `errors.email`, mailer throws → 500 `{ success: false, error: 'Failed to send message' }`
 
 ### Slice 3 — Frontend
 
@@ -73,16 +73,14 @@ Complete the local dev stack by adding Mailhog to Docker Compose and wiring SMTP
 
 ## Relevant Files
 
-**Slice 1 — Backend core**
+**Slice 2 — Backend tests**
 ```
-contact-api/package.json                           add nodemailer dep
-contact-api/src/config.js                          extend with smtp + email blocks
-contact-api/src/app.js                             wire POST /api/contact
-contact-api/src/domain/contact.js                  create — validation rules (pure)
-contact-api/src/infra/mailer.js                    create — nodemailer adapter
-contact-api/src/controllers/contactController.js   create — HTTP layer
-contact-api/src/controllers/helloController.js     read — follow existing pattern
-contact-api/.env.example                           extend with SMTP + email vars
+contact-api/src/domain/contact.js                  read — unit under test
+contact-api/src/infra/mailer.js                    mock via jest.mock in API tests
+contact-api/src/app.js                             read — used by Supertest
+contact-api/tests/hello.test.js                    read — follow existing test pattern
+contact-api/tests/contact.domain.test.js           create — domain unit tests
+contact-api/tests/contact.api.test.js              create — API integration tests
 ```
 
 ---

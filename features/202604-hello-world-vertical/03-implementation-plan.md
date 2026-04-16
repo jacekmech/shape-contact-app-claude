@@ -34,10 +34,10 @@
   - [x] Task 8: Set up Jest and Supertest; write one integration test for `GET /api/hello` — verifies 200 status and `{ message }` shape against a known env value; add `test` script
 
 - [ ] Slice 2 — Frontend
-  - [ ] Task 1: Initialise `contact-frontend` npm package — `package.json` with `"type": "module"`, name, script placeholders; install React, React DOM, Vite, `@vitejs/plugin-react`, and MUI (`@mui/material`, `@emotion/react`, `@emotion/styled`)
-  - [ ] Task 2: Create Vite config (`vite.config.js`), `index.html`, and `src/main.jsx` entry point — standard Vite + React bootstrap with MUI baseline
-  - [ ] Task 3: Create `src/config.js` — exports `{ apiBaseUrl: import.meta.env.VITE_API_BASE_URL || '' }`; empty string default means all API calls route through nginx as relative paths
-  - [ ] Task 4: Create `src/App.jsx` — `useEffect` fetch on mount using `apiBaseUrl + '/api/hello'`, `{ data, loading, error }` state, conditional MUI `Typography` render for success and inline error notice
+  - [x] Task 1: Initialise `contact-frontend` npm package — `package.json` with `"type": "module"`, name, script placeholders; install React, React DOM, Vite, `@vitejs/plugin-react`, and MUI (`@mui/material`, `@emotion/react`, `@emotion/styled`)
+  - [x] Task 2: Create Vite config (`vite.config.js`), `index.html`, and `src/main.jsx` entry point — standard Vite + React bootstrap with MUI baseline
+  - [x] Task 3: Create `src/config.js` — exports `{ apiBaseUrl: import.meta.env.VITE_API_BASE_URL || '' }`; empty string default means all API calls route through nginx as relative paths
+  - [x] Task 4: Create `src/App.jsx` — `useEffect` fetch on mount using `apiBaseUrl + '/api/hello'`, `{ data, loading, error }` state, conditional MUI `Typography` render for success and inline error notice
   - [ ] Task 5: Configure ESLint and Prettier — install dev deps including `eslint-plugin-react-hooks`; `eslint.config.js` using ES module syntax (package is `"type": "module"`); `.prettierrc` mirroring contact-api conventions; add `lint`, `format`, `format:check` scripts
   - [ ] Task 6: Add `.env.example` — documents `VITE_API_BASE_URL` (optional; empty string default means relative path through nginx)
   - [ ] Task 7: Set up Vitest and React Testing Library; write component test for `App` — mock `fetch`, verify message renders on success and error notice renders on failure; add `test` script

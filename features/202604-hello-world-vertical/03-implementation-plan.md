@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice — Implementation Plan
-- **Status:** `ready`
+- **Status:** `in progress`
 - **Date:** 2026-04-16
 
 ---
@@ -24,10 +24,10 @@
 ## Execution Order
 
 - [ ] Slice 1 — Backend
-  - [ ] Task 1: Initialise `contact-api` npm package — `package.json` with name, description, `main`, and script placeholders
-  - [ ] Task 2: Install Express; create `src/app.js` (app setup, route registration) and `src/server.js` (entry point, starts server on configured port)
-  - [ ] Task 3: Create `src/config.js` — reads `HELLO_MESSAGE` (default: `'Hello, World!'`) and `PORT` (default: `3001`) from env; exported as a single config object
-  - [ ] Task 4: Create `src/controllers/helloController.js` — handles `GET /api/hello`, reads message from config, returns `{ message }` as JSON
+  - [x] Task 1: Initialise `contact-api` npm package — `package.json` with name, description, `main`, and script placeholders
+  - [x] Task 2: Install Express; create `src/app.js` (app setup, route registration) and `src/server.js` (entry point, starts server on configured port)
+  - [x] Task 3: Create `src/config.js` — reads `HELLO_MESSAGE` (default: `'Hello, World!'`) and `PORT` (default: `3001`) from env; exported as a single config object
+  - [x] Task 4: Create `src/controllers/helloController.js` — handles `GET /api/hello`, reads message from config, returns `{ message }` as JSON
   - [ ] Task 5: Scaffold `src/domain/` — empty placeholder directory with `.gitkeep` to establish the pattern for future features
   - [ ] Task 6: Configure ESLint and Prettier — install dev dependencies, add `.eslintrc.js` and `.prettierrc` aligned to CLAUDE.md conventions (semicolons, single quotes, trailing commas), add `lint` and `format` scripts
   - [ ] Task 7: Add `.env.example` — documents `HELLO_MESSAGE` variable with its purpose and default value

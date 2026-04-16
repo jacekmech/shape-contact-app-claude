@@ -17,7 +17,7 @@
 
 - [x] Slice 1 — Backend: initialise `contact-api` with Express, config, hello endpoint, linting, and test
 - [x] Slice 2 — Frontend: initialise `contact-frontend` with Vite + React, config, hello render, linting, and test
-- [ ] Slice 3 — Runtime: wire `contact-ops` Docker Compose and `contact-middleware-nginx`, verify end-to-end
+- [x] Slice 3 — Runtime: wire `contact-ops` Docker Compose and `contact-middleware-nginx`, verify end-to-end
 
 ---
 
@@ -42,13 +42,13 @@
   - [x] Task 6: Add `.env.example` — documents `VITE_API_BASE_URL` (optional; empty string default means relative path through nginx)
   - [x] Task 7: Set up Vitest and React Testing Library; write component test for `App` — mock `fetch`, verify message renders on success and error notice renders on failure; add `test` script
 
-- [ ] Slice 3 — Runtime
+- [x] Slice 3 — Runtime
   - [x] Task 1: Create `contact-api/Dockerfile` — Node.js Alpine image, `npm install`, expose port 3001, `CMD ["node", "src/server.js"]`
   - [x] Task 2: Create `contact-frontend/Dockerfile` — Node.js Alpine image, `npm install --legacy-peer-deps`, expose port 5173, `CMD ["npm", "run", "dev"]`
   - [x] Task 3: Create `contact-middleware-nginx/nginx.conf` — upstream blocks for `contact-api:3001` and `contact-frontend:5173`; `location /api/` proxied to API with full path preserved (no prefix stripping); `location /` proxied to frontend with WebSocket upgrade headers for Vite HMR
   - [x] Task 4: Create `contact-ops/docker-compose.yml` — three services: `contact-nginx` (nginx:alpine, port 80, mounts nginx.conf from `../contact-middleware-nginx/`), `contact-api` (builds from `../contact-api`, `HELLO_MESSAGE` with default), `contact-frontend` (builds from `../contact-frontend`); internal ports only for app services
   - [x] Task 5: Add `contact-ops/.env.example` — documents `HELLO_MESSAGE` with its default; notes that no manual env setup is needed to run the stack
-  - [ ] Task 6: End-to-end smoke test — run `docker compose up` from `contact-ops`, confirm `GET http://localhost/api/hello` returns `{"message":"Hello, World!"}`, confirm the frontend loads and renders the message at `http://localhost`
+  - [x] Task 6: End-to-end smoke test — run `docker compose up` from `contact-ops`, confirm `GET http://localhost/api/hello` returns `{"message":"Hello, World!"}`, confirm the frontend loads and renders the message at `http://localhost`
 
 ---
 
@@ -60,13 +60,11 @@
 
 ## Relevant Files
 
-- `contact-api/Dockerfile`
-- `contact-api/src/server.js` — port 3001
-- `contact-frontend/Dockerfile`
-- `contact-frontend/vite.config.js` — port 5173, `host: true` confirmed
-- `contact-middleware-nginx/nginx.conf`
-- `contact-ops/docker-compose.yml`
-- `contact-ops/.env.example`
+- `contact-ops/docker-compose.yml` — start here to run the stack
+- `contact-middleware-nginx/nginx.conf` — routing: `/api/` → API, `/` → frontend
+- `contact-api/src/app.js` — Express route registration
+- `contact-api/src/config.js` — env var defaults
+- `contact-frontend/src/App.jsx` — fetch on mount, success/error render
 
 ---
 

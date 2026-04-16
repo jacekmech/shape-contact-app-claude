@@ -32,9 +32,7 @@ function App() {
   if (error) {
     return (
       <Box sx={{ p: 4 }}>
-        <Typography color="error">
-          Could not load message. Please try again later.
-        </Typography>
+        <Typography color="error">Could not load message. Please try again later.</Typography>
       </Box>
     );
   }

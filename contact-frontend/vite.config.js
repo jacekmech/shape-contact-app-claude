@@ -7,4 +7,9 @@ export default defineConfig({
     host: true, // Bind to 0.0.0.0 — required for Docker
     port: 5173,
   },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.js'],
+  },
 });

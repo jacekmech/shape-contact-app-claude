@@ -38,9 +38,9 @@
   - [x] Task 2: Create Vite config (`vite.config.js`), `index.html`, and `src/main.jsx` entry point — standard Vite + React bootstrap with MUI baseline
   - [x] Task 3: Create `src/config.js` — exports `{ apiBaseUrl: import.meta.env.VITE_API_BASE_URL || '' }`; empty string default means all API calls route through nginx as relative paths
   - [x] Task 4: Create `src/App.jsx` — `useEffect` fetch on mount using `apiBaseUrl + '/api/hello'`, `{ data, loading, error }` state, conditional MUI `Typography` render for success and inline error notice
-  - [ ] Task 5: Configure ESLint and Prettier — install dev deps including `eslint-plugin-react-hooks`; `eslint.config.js` using ES module syntax (package is `"type": "module"`); `.prettierrc` mirroring contact-api conventions; add `lint`, `format`, `format:check` scripts
-  - [ ] Task 6: Add `.env.example` — documents `VITE_API_BASE_URL` (optional; empty string default means relative path through nginx)
-  - [ ] Task 7: Set up Vitest and React Testing Library; write component test for `App` — mock `fetch`, verify message renders on success and error notice renders on failure; add `test` script
+  - [x] Task 5: Configure ESLint and Prettier — install dev deps including `eslint-plugin-react-hooks`; `eslint.config.js` using ES module syntax (package is `"type": "module"`); `.prettierrc` mirroring contact-api conventions; add `lint`, `format`, `format:check` scripts
+  - [x] Task 6: Add `.env.example` — documents `VITE_API_BASE_URL` (optional; empty string default means relative path through nginx)
+  - [x] Task 7: Set up Vitest and React Testing Library; write component test for `App` — mock `fetch`, verify message renders on success and error notice renders on failure; add `test` script
 
 - [ ] Slice 3 — Runtime
   *(tasks to be added during `prepare slice`)*

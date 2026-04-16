@@ -18,7 +18,7 @@
 - [x] Slice 1 — Backend core
 - [x] Slice 2 — Backend tests
 - [x] Slice 3 — Frontend
-- [ ] Slice 4 — Ops
+- [x] Slice 4 — Ops
 
 ---
 
@@ -55,9 +55,9 @@ Implement the ContactForm component with all three terminal states and replace t
 
 Complete the local dev stack by adding Mailhog to Docker Compose and wiring SMTP environment variables to the contact-api service.
 
-- [ ] Add `contact-mailhog` service to `contact-ops/docker-compose.yml` — image `mailhog/mailhog`; SMTP port 1025 internal only (`expose: ["1025"]`); web UI published to host (`ports: ["8025:8025"]`); no environment variables needed
-- [ ] Update `contact-api` service in `docker-compose.yml` — add `depends_on: [contact-mailhog]`; extend `environment` block with `SMTP_HOST: contact-mailhog` (Docker service name, not localhost), `SMTP_PORT: 1025`, `SMTP_SECURE: "false"`, `SMTP_USER: ""`, `SMTP_PASS: ""`, `EMAIL_FROM: ${EMAIL_FROM:-contact@localhost}`, `EMAIL_TO: ${EMAIL_TO:-owner@localhost}`
-- [ ] Update `contact-ops/.env.example` — append `EMAIL_FROM` and `EMAIL_TO` with default values and a note that SMTP vars are hardcoded in compose to point at the internal Mailhog service
+- [x] Add `contact-mailhog` service to `contact-ops/docker-compose.yml` — image `mailhog/mailhog`; SMTP port 1025 internal only (`expose: ["1025"]`); web UI published to host (`ports: ["8025:8025"]`); no environment variables needed
+- [x] Update `contact-api` service in `docker-compose.yml` — add `depends_on: [contact-mailhog]`; extend `environment` block with `SMTP_HOST: contact-mailhog` (Docker service name, not localhost), `SMTP_PORT: 1025`, `SMTP_SECURE: "false"`, `SMTP_USER: ""`, `SMTP_PASS: ""`, `EMAIL_FROM: ${EMAIL_FROM:-contact@localhost}`, `EMAIL_TO: ${EMAIL_TO:-owner@localhost}`
+- [x] Update `contact-ops/.env.example` — append `EMAIL_FROM` and `EMAIL_TO` with default values and a note that SMTP vars are hardcoded in compose to point at the internal Mailhog service
 
 ---
 

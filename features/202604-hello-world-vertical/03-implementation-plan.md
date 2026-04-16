@@ -28,10 +28,10 @@
   - [x] Task 2: Install Express; create `src/app.js` (app setup, route registration) and `src/server.js` (entry point, starts server on configured port)
   - [x] Task 3: Create `src/config.js` — reads `HELLO_MESSAGE` (default: `'Hello, World!'`) and `PORT` (default: `3001`) from env; exported as a single config object
   - [x] Task 4: Create `src/controllers/helloController.js` — handles `GET /api/hello`, reads message from config, returns `{ message }` as JSON
-  - [ ] Task 5: Scaffold `src/domain/` — empty placeholder directory with `.gitkeep` to establish the pattern for future features
-  - [ ] Task 6: Configure ESLint and Prettier — install dev dependencies, add `.eslintrc.js` and `.prettierrc` aligned to CLAUDE.md conventions (semicolons, single quotes, trailing commas), add `lint` and `format` scripts
-  - [ ] Task 7: Add `.env.example` — documents `HELLO_MESSAGE` variable with its purpose and default value
-  - [ ] Task 8: Set up Jest and Supertest; write one integration test for `GET /api/hello` — verifies 200 status and `{ message }` shape against a known env value; add `test` script
+  - [x] Task 5: Scaffold `src/domain/` — empty placeholder directory with `.gitkeep` to establish the pattern for future features
+  - [x] Task 6: Configure ESLint and Prettier — install dev dependencies, add `.eslintrc.js` and `.prettierrc` aligned to CLAUDE.md conventions (semicolons, single quotes, trailing commas), add `lint` and `format` scripts
+  - [x] Task 7: Add `.env.example` — documents `HELLO_MESSAGE` variable with its purpose and default value
+  - [x] Task 8: Set up Jest and Supertest; write one integration test for `GET /api/hello` — verifies 200 status and `{ message }` shape against a known env value; add `test` script
 
 - [ ] Slice 2 — Frontend
   *(tasks to be added during `prepare slice`)*

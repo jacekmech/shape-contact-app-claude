@@ -16,7 +16,7 @@
 ## Slices
 
 - [x] Slice 1 — Backend: initialise `contact-api` with Express, config, hello endpoint, linting, and test
-- [ ] Slice 2 — Frontend: initialise `contact-frontend` with Vite + React, config, hello render, linting, and test
+- [x] Slice 2 — Frontend: initialise `contact-frontend` with Vite + React, config, hello render, linting, and test
 - [ ] Slice 3 — Runtime: wire `contact-ops` Docker Compose and `contact-middleware-nginx`, verify end-to-end
 
 ---
@@ -33,7 +33,7 @@
   - [x] Task 7: Add `.env.example` — documents `HELLO_MESSAGE` variable with its purpose and default value
   - [x] Task 8: Set up Jest and Supertest; write one integration test for `GET /api/hello` — verifies 200 status and `{ message }` shape against a known env value; add `test` script
 
-- [ ] Slice 2 — Frontend
+- [x] Slice 2 — Frontend
   - [x] Task 1: Initialise `contact-frontend` npm package — `package.json` with `"type": "module"`, name, script placeholders; install React, React DOM, Vite, `@vitejs/plugin-react`, and MUI (`@mui/material`, `@emotion/react`, `@emotion/styled`)
   - [x] Task 2: Create Vite config (`vite.config.js`), `index.html`, and `src/main.jsx` entry point — standard Vite + React bootstrap with MUI baseline
   - [x] Task 3: Create `src/config.js` — exports `{ apiBaseUrl: import.meta.env.VITE_API_BASE_URL || '' }`; empty string default means all API calls route through nginx as relative paths
@@ -55,19 +55,11 @@
 
 ## Relevant Files
 
-- `contact-frontend/package.json`
-- `contact-frontend/vite.config.js`
-- `contact-frontend/index.html`
-- `contact-frontend/src/main.jsx`
-- `contact-frontend/src/config.js`
-- `contact-frontend/src/App.jsx`
-- `contact-frontend/.env.example`
-- `contact-frontend/eslint.config.js`
-- `contact-frontend/.prettierrc`
-- `contact-api/.prettierrc` — Prettier config to mirror
-- `contact-api/eslint.config.js` — ESLint conventions to mirror
-- `contact-ops/` — Docker Compose and local orchestration (Slice 3)
-- `contact-middleware-nginx/` — nginx reverse proxy config (Slice 3)
+- `contact-api/src/server.js` — port 3001, service name needed in Docker Compose
+- `contact-api/src/app.js` — route `/api/hello` to verify nginx proxy target
+- `contact-frontend/vite.config.js` — port 5173, `host: true` already set for Docker
+- `contact-ops/` — Docker Compose target (Slice 3)
+- `contact-middleware-nginx/` — nginx config target (Slice 3)
 
 ---
 

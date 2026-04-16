@@ -15,7 +15,7 @@
 
 ## Slices
 
-- [ ] Slice 1 — Backend: initialise `contact-api` with Express, config, hello endpoint, linting, and test
+- [x] Slice 1 — Backend: initialise `contact-api` with Express, config, hello endpoint, linting, and test
 - [ ] Slice 2 — Frontend: initialise `contact-frontend` with Vite + React, config, hello render, linting, and test
 - [ ] Slice 3 — Runtime: wire `contact-ops` Docker Compose and `contact-middleware-nginx`, verify end-to-end
 
@@ -23,7 +23,7 @@
 
 ## Execution Order
 
-- [ ] Slice 1 — Backend
+- [x] Slice 1 — Backend
   - [x] Task 1: Initialise `contact-api` npm package — `package.json` with name, description, `main`, and script placeholders
   - [x] Task 2: Install Express; create `src/app.js` (app setup, route registration) and `src/server.js` (entry point, starts server on configured port)
   - [x] Task 3: Create `src/config.js` — reads `HELLO_MESSAGE` (default: `'Hello, World!'`) and `PORT` (default: `3001`) from env; exported as a single config object
@@ -49,15 +49,10 @@
 
 ## Relevant Files
 
-- `contact-api/package.json`
-- `contact-api/src/config.js`
-- `contact-api/src/app.js`
-- `contact-api/src/server.js`
-- `contact-api/src/controllers/helloController.js`
-- `contact-api/src/domain/` — placeholder directory
-- `contact-api/.env.example`
-- `contact-api/.eslintrc.js`
-- `contact-api/.prettierrc`
+- `contact-api/src/app.js` — Express app, route registration (Slice 2 fetch target)
+- `contact-api/src/config.js` — env var conventions to mirror in frontend config
+- `contact-api/.prettierrc` — Prettier config to replicate in `contact-frontend`
+- `contact-api/eslint.config.js` — ESLint config to replicate in `contact-frontend`
 - `contact-frontend/` — frontend module root (Slice 2)
 - `contact-ops/` — Docker Compose and local orchestration (Slice 3)
 - `contact-middleware-nginx/` — nginx reverse proxy config (Slice 3)

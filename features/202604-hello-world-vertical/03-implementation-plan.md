@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice — Implementation Plan
-- **Status:** `in progress`
+- **Status:** `done`
 - **Date:** 2026-04-16
 
 ---
@@ -71,3 +71,4 @@
 ## Notes
 - Slice 1 and Slice 2 are independent and could be executed in either order; Slice 3 depends on both.
 - Each slice is intended for a single focused agent session. Start each new session with `/pick-up-feature` unless the feature is already active.
+- Implementation complete 2026-04-16. All 3 slices and 21 tasks delivered and verified. End-to-end path confirmed: env variable → API → nginx → React frontend.

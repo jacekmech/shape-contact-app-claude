@@ -47,9 +47,9 @@ Add unit and integration test coverage for the backend contact flow.
 
 Implement the ContactForm component with all three terminal states and replace the hello world component in App.jsx. Add component tests.
 
-- [ ] Create `contact-frontend/src/components/ContactForm.jsx` — manages `values`, `errors`, `status` state; client-side validation; POST to `/api/contact`; renders field errors (idle), success confirmation, or server error notice based on status
-- [ ] Update `contact-frontend/src/App.jsx` — replace hello world fetch with `<ContactForm />`
-- [ ] Create `contact-frontend/src/test/ContactForm.test.jsx` — renders fields; shows inline errors on invalid submit; shows success state after 200; shows error state after 5xx/network error; shows inline errors after 422; submit disabled during submission
+- [ ] Create `contact-frontend/src/components/ContactForm.jsx` — state: `values` (`name/email/message`), `errors` (field-level object), `status` (`'idle'|'submitting'|'success'|'error'`); on submit: client-side validate (name non-empty, email format, message non-empty), set errors and abort if invalid; POST `JSON.stringify(values)` to `${config.apiBaseUrl}/api/contact`; on 200 set `status='success'` and render confirmation in place of form; on 422 parse `errors` from body, set field errors, reset `status='idle'`; on 5xx/network error set `status='error'` and render error notice; submit `Button` disabled when `status==='submitting'`; use MUI `Box`, `TextField` (with `error`/`helperText` props), `Button`, `Typography`
+- [ ] Update `contact-frontend/src/App.jsx` — remove hello world fetch logic, render `<ContactForm />` only; delete `contact-frontend/src/test/App.test.jsx` (tests hello world fetch behavior that no longer exists)
+- [ ] Create `contact-frontend/src/test/ContactForm.test.jsx` — use Vitest + `@testing-library/react` + `fireEvent`; mock `fetch` via `vi.stubGlobal`; cases: (1) renders name/email/message fields and submit button, (2) shows inline field errors when submitted empty (no fetch call), (3) replaces form with success confirmation after 200 response, (4) replaces form with error notice after network failure, (5) sets inline field errors and keeps form active after 422 response, (6) submit button disabled while `status==='submitting'`
 
 ### Slice 4 — Ops
 
@@ -73,14 +73,15 @@ Complete the local dev stack by adding Mailhog to Docker Compose and wiring SMTP
 
 ## Relevant Files
 
-**Slice 2 — Backend tests**
+**Slice 3 — Frontend**
 ```
-contact-api/src/domain/contact.js                  read — unit under test
-contact-api/src/infra/mailer.js                    mock via jest.mock in API tests
-contact-api/src/app.js                             read — used by Supertest
-contact-api/tests/hello.test.js                    read — follow existing test pattern
-contact-api/tests/contact.domain.test.js           create — domain unit tests
-contact-api/tests/contact.api.test.js              create — API integration tests
+contact-frontend/src/App.jsx                       update — render ContactForm, remove hello world fetch
+contact-frontend/src/test/App.test.jsx             delete — hello world tests no longer apply
+contact-frontend/src/components/ContactForm.jsx    create — form component with all three states
+contact-frontend/src/test/ContactForm.test.jsx     create — component tests (6 cases)
+contact-frontend/src/config.js                     read — apiBaseUrl used in fetch call
+contact-frontend/src/test/setup.js                 read — test setup (jest-dom import)
+contact-frontend/src/test/App.test.jsx             read — follow existing test patterns
 ```
 
 ---

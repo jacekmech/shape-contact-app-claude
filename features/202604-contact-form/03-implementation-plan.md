@@ -55,10 +55,9 @@ Implement the ContactForm component with all three terminal states and replace t
 
 Complete the local dev stack by adding Mailhog to Docker Compose and wiring SMTP environment variables to the contact-api service.
 
-- [ ] Add `contact-mailhog` service to `contact-ops/docker-compose.yml` (image `mailhog/mailhog`, SMTP on 1025 internal, web UI on 8025 exposed)
-- [ ] Add `depends_on: contact-mailhog` to `contact-api` service in `docker-compose.yml`
-- [ ] Wire SMTP env vars into `contact-api` service environment block in `docker-compose.yml` (defaults pointing at Mailhog)
-- [ ] Update `contact-ops/.env.example` with Mailhog-related vars if any ops-level overrides are needed
+- [ ] Add `contact-mailhog` service to `contact-ops/docker-compose.yml` — image `mailhog/mailhog`; SMTP port 1025 internal only (`expose: ["1025"]`); web UI published to host (`ports: ["8025:8025"]`); no environment variables needed
+- [ ] Update `contact-api` service in `docker-compose.yml` — add `depends_on: [contact-mailhog]`; extend `environment` block with `SMTP_HOST: contact-mailhog` (Docker service name, not localhost), `SMTP_PORT: 1025`, `SMTP_SECURE: "false"`, `SMTP_USER: ""`, `SMTP_PASS: ""`, `EMAIL_FROM: ${EMAIL_FROM:-contact@localhost}`, `EMAIL_TO: ${EMAIL_TO:-owner@localhost}`
+- [ ] Update `contact-ops/.env.example` — append `EMAIL_FROM` and `EMAIL_TO` with default values and a note that SMTP vars are hardcoded in compose to point at the internal Mailhog service
 
 ---
 
@@ -73,15 +72,10 @@ Complete the local dev stack by adding Mailhog to Docker Compose and wiring SMTP
 
 ## Relevant Files
 
-**Slice 3 — Frontend**
+**Slice 4 — Ops**
 ```
-contact-frontend/src/App.jsx                       update — render ContactForm, remove hello world fetch
-contact-frontend/src/test/App.test.jsx             delete — hello world tests no longer apply
-contact-frontend/src/components/ContactForm.jsx    create — form component with all three states
-contact-frontend/src/test/ContactForm.test.jsx     create — component tests (6 cases)
-contact-frontend/src/config.js                     read — apiBaseUrl used in fetch call
-contact-frontend/src/test/setup.js                 read — test setup (jest-dom import)
-contact-frontend/src/test/App.test.jsx             read — follow existing test patterns
+contact-ops/docker-compose.yml                     update — add contact-mailhog, wire contact-api env
+contact-ops/.env.example                           update — document EMAIL_FROM, EMAIL_TO overrides
 ```
 
 ---

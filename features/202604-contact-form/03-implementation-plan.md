@@ -15,7 +15,7 @@
 
 ## Slices
 
-- [ ] Slice 1 — Backend core
+- [x] Slice 1 — Backend core
 - [ ] Slice 2 — Backend tests
 - [ ] Slice 3 — Frontend
 - [ ] Slice 4 — Ops
@@ -32,9 +32,9 @@ Extend the backend with the domain validation module, mailer infra adapter, cont
 - [x] Extend `contact-api/src/config.js` with a `smtp` block (`host` → `SMTP_HOST` default `'localhost'`, `port` → `SMTP_PORT` default `1025`, `secure` → `SMTP_SECURE` default `false`, `user` → `SMTP_USER` default `''`, `pass` → `SMTP_PASS` default `''`) and an `email` block (`from` → `EMAIL_FROM` default `'contact@localhost'`, `to` → `EMAIL_TO` default `'owner@localhost'`)
 - [x] Create `contact-api/src/domain/contact.js` — exports `validate(data)`; trims name and message before checking; returns `null` when all fields are valid, or an errors object `{ name?, email?, message? }` with messages: `'Name is required'`, `'Email is required'` / `'Invalid email address'`, `'Message is required'`
 - [x] Create `contact-api/src/infra/` directory and `contact-api/src/infra/mailer.js` — creates nodemailer transport once at module load using `config.smtp`; exports `sendContactEmail({ name, email, message })` which sends a plain-text email to `config.email.to`; propagates SMTP errors as thrown exceptions
-- [ ] Create `contact-api/src/controllers/contactController.js` — exports `postContact(req, res)`; calls `domain/contact.validate`, returns `422 { success: false, errors }` on failure; calls `infra/mailer.sendContactEmail`, returns `200 { success: true }` on success or `500 { success: false, error: 'Failed to send message' }` on mailer throw
-- [ ] Wire `POST /api/contact` to `contactController.postContact` in `contact-api/src/app.js`
-- [ ] Update `contact-api/.env.example` — append documented entries for `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM`, `EMAIL_TO` with Mailhog defaults
+- [x] Create `contact-api/src/controllers/contactController.js` — exports `postContact(req, res)`; calls `domain/contact.validate`, returns `422 { success: false, errors }` on failure; calls `infra/mailer.sendContactEmail`, returns `200 { success: true }` on success or `500 { success: false, error: 'Failed to send message' }` on mailer throw
+- [x] Wire `POST /api/contact` to `contactController.postContact` in `contact-api/src/app.js`
+- [x] Update `contact-api/.env.example` — append documented entries for `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM`, `EMAIL_TO` with Mailhog defaults
 
 ### Slice 2 — Backend tests
 

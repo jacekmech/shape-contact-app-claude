@@ -17,7 +17,7 @@
 
 - [x] Slice 1 — Backend core
 - [x] Slice 2 — Backend tests
-- [ ] Slice 3 — Frontend
+- [x] Slice 3 — Frontend
 - [ ] Slice 4 — Ops
 
 ---
@@ -47,9 +47,9 @@ Add unit and integration test coverage for the backend contact flow.
 
 Implement the ContactForm component with all three terminal states and replace the hello world component in App.jsx. Add component tests.
 
-- [ ] Create `contact-frontend/src/components/ContactForm.jsx` — state: `values` (`name/email/message`), `errors` (field-level object), `status` (`'idle'|'submitting'|'success'|'error'`); on submit: client-side validate (name non-empty, email format, message non-empty), set errors and abort if invalid; POST `JSON.stringify(values)` to `${config.apiBaseUrl}/api/contact`; on 200 set `status='success'` and render confirmation in place of form; on 422 parse `errors` from body, set field errors, reset `status='idle'`; on 5xx/network error set `status='error'` and render error notice; submit `Button` disabled when `status==='submitting'`; use MUI `Box`, `TextField` (with `error`/`helperText` props), `Button`, `Typography`
-- [ ] Update `contact-frontend/src/App.jsx` — remove hello world fetch logic, render `<ContactForm />` only; delete `contact-frontend/src/test/App.test.jsx` (tests hello world fetch behavior that no longer exists)
-- [ ] Create `contact-frontend/src/test/ContactForm.test.jsx` — use Vitest + `@testing-library/react` + `fireEvent`; mock `fetch` via `vi.stubGlobal`; cases: (1) renders name/email/message fields and submit button, (2) shows inline field errors when submitted empty (no fetch call), (3) replaces form with success confirmation after 200 response, (4) replaces form with error notice after network failure, (5) sets inline field errors and keeps form active after 422 response, (6) submit button disabled while `status==='submitting'`
+- [x] Create `contact-frontend/src/components/ContactForm.jsx` — state: `values` (`name/email/message`), `errors` (field-level object), `status` (`'idle'|'submitting'|'success'|'error'`); on submit: client-side validate (name non-empty, email format, message non-empty), set errors and abort if invalid; POST `JSON.stringify(values)` to `${config.apiBaseUrl}/api/contact`; on 200 set `status='success'` and render confirmation in place of form; on 422 parse `errors` from body, set field errors, reset `status='idle'`; on 5xx/network error set `status='error'` and render error notice; submit `Button` disabled when `status==='submitting'`; use MUI `Box`, `TextField` (with `error`/`helperText` props), `Button`, `Typography`
+- [x] Update `contact-frontend/src/App.jsx` — remove hello world fetch logic, render `<ContactForm />` only; delete `contact-frontend/src/test/App.test.jsx` (tests hello world fetch behavior that no longer exists)
+- [x] Create `contact-frontend/src/test/ContactForm.test.jsx` — use Vitest + `@testing-library/react` + `fireEvent`; mock `fetch` via `vi.stubGlobal`; cases: (1) renders name/email/message fields and submit button, (2) shows inline field errors when submitted empty (no fetch call), (3) replaces form with success confirmation after 200 response, (4) replaces form with error notice after network failure, (5) sets inline field errors and keeps form active after 422 response, (6) submit button disabled while `status==='submitting'`
 
 ### Slice 4 — Ops
 

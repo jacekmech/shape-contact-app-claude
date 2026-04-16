@@ -28,13 +28,13 @@
 
 Extend the backend with the domain validation module, mailer infra adapter, contact controller, and wired route. Extends config and env example with SMTP settings. Adds nodemailer as a runtime dependency.
 
-- [ ] Add `nodemailer` dependency to `contact-api/package.json` (install)
-- [ ] Extend `contact-api/src/config.js` with SMTP host/port/secure/user/pass and email from/to, all with Mailhog-compatible defaults
-- [ ] Create `contact-api/src/domain/contact.js` — pure `validate(data)` function; returns `null` on valid input, or `{ field: errorMessage }` map
-- [ ] Create `contact-api/src/infra/mailer.js` — nodemailer transport created from config; exports `sendContactEmail({ name, email, message })`; throws on SMTP failure
-- [ ] Create `contact-api/src/controllers/contactController.js` — parses body, calls domain validate, calls mailer, returns 200/422/500
-- [ ] Wire `POST /api/contact` route in `contact-api/src/app.js`
-- [ ] Update `contact-api/.env.example` with SMTP and email address vars with Mailhog defaults
+- [ ] Install `nodemailer@^6` as a runtime dependency in `contact-api` (`npm install nodemailer@^6`)
+- [ ] Extend `contact-api/src/config.js` with a `smtp` block (`host` → `SMTP_HOST` default `'localhost'`, `port` → `SMTP_PORT` default `1025`, `secure` → `SMTP_SECURE` default `false`, `user` → `SMTP_USER` default `''`, `pass` → `SMTP_PASS` default `''`) and an `email` block (`from` → `EMAIL_FROM` default `'contact@localhost'`, `to` → `EMAIL_TO` default `'owner@localhost'`)
+- [ ] Create `contact-api/src/domain/contact.js` — exports `validate(data)`; trims name and message before checking; returns `null` when all fields are valid, or an errors object `{ name?, email?, message? }` with messages: `'Name is required'`, `'Email is required'` / `'Invalid email address'`, `'Message is required'`
+- [ ] Create `contact-api/src/infra/` directory and `contact-api/src/infra/mailer.js` — creates nodemailer transport once at module load using `config.smtp`; exports `sendContactEmail({ name, email, message })` which sends a plain-text email to `config.email.to`; propagates SMTP errors as thrown exceptions
+- [ ] Create `contact-api/src/controllers/contactController.js` — exports `postContact(req, res)`; calls `domain/contact.validate`, returns `422 { success: false, errors }` on failure; calls `infra/mailer.sendContactEmail`, returns `200 { success: true }` on success or `500 { success: false, error: 'Failed to send message' }` on mailer throw
+- [ ] Wire `POST /api/contact` to `contactController.postContact` in `contact-api/src/app.js`
+- [ ] Update `contact-api/.env.example` — append documented entries for `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM`, `EMAIL_TO` with Mailhog defaults
 
 ### Slice 2 — Backend tests
 
@@ -73,20 +73,16 @@ Complete the local dev stack by adding Mailhog to Docker Compose and wiring SMTP
 
 ## Relevant Files
 
+**Slice 1 — Backend core**
 ```
-contact-api/src/config.js                          extend with SMTP + email config
+contact-api/package.json                           add nodemailer dep
+contact-api/src/config.js                          extend with smtp + email blocks
 contact-api/src/app.js                             wire POST /api/contact
-contact-api/src/domain/contact.js                  create — validation rules
+contact-api/src/domain/contact.js                  create — validation rules (pure)
 contact-api/src/infra/mailer.js                    create — nodemailer adapter
 contact-api/src/controllers/contactController.js   create — HTTP layer
-contact-api/tests/contact.domain.test.js           create — domain unit tests
-contact-api/tests/contact.api.test.js              create — API integration tests
-contact-api/.env.example                           extend with SMTP vars
-contact-frontend/src/App.jsx                       update — render ContactForm
-contact-frontend/src/components/ContactForm.jsx    create — form component
-contact-frontend/src/test/ContactForm.test.jsx     create — component tests
-contact-ops/docker-compose.yml                     extend — add Mailhog, wire env
-contact-ops/.env.example                           update if needed
+contact-api/src/controllers/helloController.js     read — follow existing pattern
+contact-api/.env.example                           extend with SMTP + email vars
 ```
 
 ---

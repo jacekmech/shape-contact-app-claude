@@ -43,7 +43,12 @@
   - [x] Task 7: Set up Vitest and React Testing Library; write component test for `App` — mock `fetch`, verify message renders on success and error notice renders on failure; add `test` script
 
 - [ ] Slice 3 — Runtime
-  *(tasks to be added during `prepare slice`)*
+  - [x] Task 1: Create `contact-api/Dockerfile` — Node.js Alpine image, `npm install`, expose port 3001, `CMD ["node", "src/server.js"]`
+  - [x] Task 2: Create `contact-frontend/Dockerfile` — Node.js Alpine image, `npm install --legacy-peer-deps`, expose port 5173, `CMD ["npm", "run", "dev"]`
+  - [x] Task 3: Create `contact-middleware-nginx/nginx.conf` — upstream blocks for `contact-api:3001` and `contact-frontend:5173`; `location /api/` proxied to API with full path preserved (no prefix stripping); `location /` proxied to frontend with WebSocket upgrade headers for Vite HMR
+  - [x] Task 4: Create `contact-ops/docker-compose.yml` — three services: `contact-nginx` (nginx:alpine, port 80, mounts nginx.conf from `../contact-middleware-nginx/`), `contact-api` (builds from `../contact-api`, `HELLO_MESSAGE` with default), `contact-frontend` (builds from `../contact-frontend`); internal ports only for app services
+  - [x] Task 5: Add `contact-ops/.env.example` — documents `HELLO_MESSAGE` with its default; notes that no manual env setup is needed to run the stack
+  - [ ] Task 6: End-to-end smoke test — run `docker compose up` from `contact-ops`, confirm `GET http://localhost/api/hello` returns `{"message":"Hello, World!"}`, confirm the frontend loads and renders the message at `http://localhost`
 
 ---
 
@@ -55,11 +60,13 @@
 
 ## Relevant Files
 
-- `contact-api/src/server.js` — port 3001, service name needed in Docker Compose
-- `contact-api/src/app.js` — route `/api/hello` to verify nginx proxy target
-- `contact-frontend/vite.config.js` — port 5173, `host: true` already set for Docker
-- `contact-ops/` — Docker Compose target (Slice 3)
-- `contact-middleware-nginx/` — nginx config target (Slice 3)
+- `contact-api/Dockerfile`
+- `contact-api/src/server.js` — port 3001
+- `contact-frontend/Dockerfile`
+- `contact-frontend/vite.config.js` — port 5173, `host: true` confirmed
+- `contact-middleware-nginx/nginx.conf`
+- `contact-ops/docker-compose.yml`
+- `contact-ops/.env.example`
 
 ---
 

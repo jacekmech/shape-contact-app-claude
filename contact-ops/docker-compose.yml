@@ -1,0 +1,25 @@
+services:
+  contact-nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ../contact-middleware-nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - contact-api
+      - contact-frontend
+
+  contact-api:
+    build:
+      context: ../contact-api
+    environment:
+      HELLO_MESSAGE: ${HELLO_MESSAGE:-Hello, World!}
+      PORT: 3001
+    expose:
+      - "3001"
+
+  contact-frontend:
+    build:
+      context: ../contact-frontend
+    expose:
+      - "5173"

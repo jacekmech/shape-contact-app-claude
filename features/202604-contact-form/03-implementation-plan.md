@@ -16,7 +16,7 @@
 ## Slices
 
 - [x] Slice 1 — contact-api: contact endpoint, validation, mailer infra, tests
-- [ ] Slice 2 — contact-frontend: ContactForm component, App.jsx update, component tests
+- [x] Slice 2 — contact-frontend: ContactForm component, App.jsx update, component tests
 - [ ] Slice 3 — Stack wiring: Docker Compose env extension, smoke verification
 
 ---
@@ -33,14 +33,16 @@
   - [x] Write integration tests in `src/__tests__/contact.test.js` — valid payload → 200, missing/invalid fields → 422 with field errors, mailer failure → 500; stub mailer via `jest.mock`
   - [x] Verify `npm test` passes and `node src/server.js` responds correctly to a manual POST
 
-- [ ] Slice 2 — contact-frontend
+- [x] Slice 2 — contact-frontend
   - [x] Create `src/components/ContactForm.jsx` — MUI form with name, email, message fields; client-side validation on submit; calls `POST /api/contact`; success Alert + field reset on 200; field-level helperText on 422; error Alert on 500; submit disabled while in-flight
   - [x] Update `src/App.jsx` to render `ContactForm` in place of `HelloMessage`
   - [x] Write component tests in `src/__tests__/ContactForm.test.jsx` — success (200), field errors (422), server error (500); use `vi.stubGlobal('fetch', ...)` and `fireEvent`
   - [x] Verify `npm test` passes
 
 - [ ] Slice 3 — Stack wiring
-  - _Tasks to be defined during prepare-slice_
+  - [ ] Extend `contact-api` service in `docker-compose.yml` with email env vars: `CONTACT_RECIPIENT`, `EMAIL_TRANSPORT` (default `console`), `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`
+  - [ ] Update `contact-ops/.env.example` to document all new email config vars with comments
+  - [ ] Smoke verify: `docker compose up` from `contact-ops`, submit the form, confirm API console shows email output
 
 ---
 
@@ -64,10 +66,11 @@
 - `contact-api/src/app.js` — POST /api/contact mounted (done)
 - `contact-frontend/src/App.jsx` — renders ContactForm (done)
 - `contact-frontend/src/components/ContactForm.jsx` — MUI form, validation, success/error states (done)
-- `contact-ops/docker-compose.yml` — extend with email env vars (Slice 3)
-- `contact-ops/.env.example` — document new vars (Slice 3)
+- `contact-ops/docker-compose.yml` — extend with email env vars
+- `contact-ops/.env.example` — document new vars
+- `contact-middleware-nginx/nginx.conf` — no changes expected
 
 ---
 
 ## Notes
-- Next step: `implement batch` for Slice 2.
+- Next step: `implement batch` for Slice 3.

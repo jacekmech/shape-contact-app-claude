@@ -17,7 +17,7 @@
 
 - [x] Slice 1 — contact-api: contact endpoint, validation, mailer infra, tests
 - [x] Slice 2 — contact-frontend: ContactForm component, App.jsx update, component tests
-- [ ] Slice 3 — Stack wiring: Docker Compose env extension, smoke verification
+- [x] Slice 3 — Stack wiring: Docker Compose env extension, smoke verification
 
 ---
 
@@ -39,7 +39,7 @@
   - [x] Write component tests in `src/__tests__/ContactForm.test.jsx` — success (200), field errors (422), server error (500); use `vi.stubGlobal('fetch', ...)` and `fireEvent`
   - [x] Verify `npm test` passes
 
-- [ ] Slice 3 — Stack wiring
+- [x] Slice 3 — Stack wiring
   - [x] Extend `contact-api` service in `docker-compose.yml` with email env vars: `CONTACT_RECIPIENT`, `EMAIL_TRANSPORT` (default `console`), `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`
   - [x] Update `contact-ops/.env.example` to document all new email config vars with comments
   - [x] Smoke verify: `docker compose up` from `contact-ops`, submit the form, confirm API console shows email output
@@ -73,4 +73,4 @@
 ---
 
 ## Notes
-- Next step: `implement batch` for Slice 3.
+- All slices complete. Awaiting developer testing before `finish implementation`.

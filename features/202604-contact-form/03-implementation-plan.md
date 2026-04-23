@@ -15,7 +15,7 @@
 
 ## Slices
 
-- [ ] Slice 1 — contact-api: contact endpoint, validation, mailer infra, tests
+- [x] Slice 1 — contact-api: contact endpoint, validation, mailer infra, tests
 - [ ] Slice 2 — contact-frontend: ContactForm component, App.jsx update, component tests
 - [ ] Slice 3 — Stack wiring: Docker Compose env extension, smoke verification
 
@@ -23,7 +23,7 @@
 
 ## Execution Order
 
-- [ ] Slice 1 — contact-api
+- [x] Slice 1 — contact-api
   - [x] Extend `src/config.js` with email config vars: `contactRecipient`, `emailTransport`, `smtpHost`, `smtpPort`, `smtpUser`, `smtpPass`, `smtpFrom`
   - [x] Add `nodemailer` to `contact-api` dependencies
   - [x] Create `src/infra/mailer.js` — factory: console transport logs formatted email to stdout; SMTP transport uses nodemailer. Export `send({ name, email, message })`
@@ -53,17 +53,17 @@
 
 ## Relevant Files
 
-- `contact-api/src/config.js` — extended with email config vars
-- `contact-api/src/infra/mailer.js` — console and SMTP transports
-- `contact-api/src/app.js` — mount contact route (upcoming)
-- `contact-api/src/controllers/contactController.js` — new (upcoming)
-- `contact-api/src/domain/contactService.js` — new (upcoming)
-- `contact-frontend/src/App.jsx` — update to render ContactForm
-- `contact-frontend/src/components/ContactForm.jsx` — new
-- `contact-ops/docker-compose.yml` — extend with email env vars
-- `contact-ops/.env.example` — document new vars
+- `contact-api/src/config.js` — email config vars (done)
+- `contact-api/src/infra/mailer.js` — console and SMTP transports (done)
+- `contact-api/src/domain/contactService.js` — validation and mailer call (done)
+- `contact-api/src/controllers/contactController.js` — HTTP handler (done)
+- `contact-api/src/app.js` — POST /api/contact mounted (done)
+- `contact-frontend/src/App.jsx` — update to render ContactForm (Slice 2)
+- `contact-frontend/src/components/ContactForm.jsx` — new (Slice 2)
+- `contact-ops/docker-compose.yml` — extend with email env vars (Slice 3)
+- `contact-ops/.env.example` — document new vars (Slice 3)
 
 ---
 
 ## Notes
-- Next step: `implement batch` for Slice 1.
+- Next step: `prepare slice` for Slice 2.

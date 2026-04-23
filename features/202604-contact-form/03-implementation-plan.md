@@ -29,9 +29,9 @@
   - [x] Create `src/infra/mailer.js` — factory: console transport logs formatted email to stdout; SMTP transport uses nodemailer. Export `send({ name, email, message })`
   - [x] Create `src/domain/contactService.js` — validate `name`, `email`, `message`; call `mailer.send()`; return structured result
   - [x] Create `src/controllers/contactController.js` — parse request body, call `contactService`, map result to `200 / 422 / 500`
-  - [ ] Mount `POST /api/contact` in `src/app.js`; add `express.json()` middleware if not already present
-  - [ ] Write integration tests in `src/__tests__/contact.test.js` — valid payload → 200, missing/invalid fields → 422 with field errors, mailer failure → 500; stub mailer via `jest.mock`
-  - [ ] Verify `npm test` passes and `node src/server.js` responds correctly to a manual POST
+  - [x] Mount `POST /api/contact` in `src/app.js`; add `express.json()` middleware if not already present
+  - [x] Write integration tests in `src/__tests__/contact.test.js` — valid payload → 200, missing/invalid fields → 422 with field errors, mailer failure → 500; stub mailer via `jest.mock`
+  - [x] Verify `npm test` passes and `node src/server.js` responds correctly to a manual POST
 
 - [ ] Slice 2 — contact-frontend
   - _Tasks to be defined during prepare-slice_

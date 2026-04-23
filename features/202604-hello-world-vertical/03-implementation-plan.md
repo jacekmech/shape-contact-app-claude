@@ -46,7 +46,12 @@
   - [x] Confirm frontend runs standalone: `npm run dev`
 
 - [ ] Slice 3 — Stack wiring
-  *(tasks to be defined in prepare slice)*
+  - [ ] Create `contact-api/Dockerfile` (Node 18, runs `node src/server.js`)
+  - [ ] Create `contact-frontend/Dockerfile` (Node 18, runs Vite dev server with `--host`)
+  - [ ] Create `contact-middleware-nginx/nginx.conf` — proxies `/api/` to `contact-api:3000`, `/*` to `contact-frontend:5173`
+  - [ ] Create `contact-ops/docker-compose.yml` — three services on a shared network, nginx exposed on port 80
+  - [ ] Create `contact-ops/.env.example` documenting configurable vars
+  - [ ] Verify full stack: `docker compose up` from `contact-ops`, confirm `http://localhost` serves the greeting
 
 ---
 

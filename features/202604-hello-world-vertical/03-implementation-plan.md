@@ -34,7 +34,16 @@
   - [x] Confirm API runs standalone: `node src/server.js` responds correctly
 
 - [ ] Slice 2 — contact-frontend scaffold
-  *(tasks to be defined in prepare slice)*
+  - [ ] Initialize `package.json` with Vite, React, MUI, and Vitest + React Testing Library
+  - [ ] Add `vite.config.js` with test environment configured (jsdom)
+  - [ ] Add ESLint config for JSX/React
+  - [ ] Create `index.html` (Vite entry point)
+  - [ ] Create `src/config.js` reading `VITE_API_BASE_URL` from `import.meta.env` with default `/api`
+  - [ ] Create `src/main.jsx` as the app entry point
+  - [ ] Create `src/App.jsx` rendering the HelloMessage component
+  - [ ] Create `src/components/HelloMessage.jsx` — fetches `GET /api/hello` on mount, three states: loading / message / error; rendered with MUI
+  - [ ] Write component test for HelloMessage: mock fetch, verify message renders on success and error text renders on failure
+  - [ ] Confirm frontend runs standalone: `npm run dev`
 
 - [ ] Slice 3 — Stack wiring
   *(tasks to be defined in prepare slice)*

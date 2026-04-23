@@ -24,9 +24,9 @@
 ## Execution Order
 
 - [ ] Slice 1 — contact-api
-  - [ ] Extend `src/config.js` with email config vars: `contactRecipient`, `emailTransport`, `smtpHost`, `smtpPort`, `smtpUser`, `smtpPass`, `smtpFrom`
-  - [ ] Add `nodemailer` to `contact-api` dependencies
-  - [ ] Create `src/infra/mailer.js` — factory: console transport logs formatted email to stdout; SMTP transport uses nodemailer. Export `send({ name, email, message })`
+  - [x] Extend `src/config.js` with email config vars: `contactRecipient`, `emailTransport`, `smtpHost`, `smtpPort`, `smtpUser`, `smtpPass`, `smtpFrom`
+  - [x] Add `nodemailer` to `contact-api` dependencies
+  - [x] Create `src/infra/mailer.js` — factory: console transport logs formatted email to stdout; SMTP transport uses nodemailer. Export `send({ name, email, message })`
   - [ ] Create `src/domain/contactService.js` — validate `name`, `email`, `message`; call `mailer.send()`; return structured result
   - [ ] Create `src/controllers/contactController.js` — parse request body, call `contactService`, map result to `200 / 422 / 500`
   - [ ] Mount `POST /api/contact` in `src/app.js`; add `express.json()` middleware if not already present
@@ -53,11 +53,11 @@
 
 ## Relevant Files
 
-- `contact-api/src/config.js` — extend with email config vars
-- `contact-api/src/app.js` — mount contact route
-- `contact-api/src/controllers/contactController.js` — new
-- `contact-api/src/domain/contactService.js` — new
-- `contact-api/src/infra/mailer.js` — new
+- `contact-api/src/config.js` — extended with email config vars
+- `contact-api/src/infra/mailer.js` — console and SMTP transports
+- `contact-api/src/app.js` — mount contact route (upcoming)
+- `contact-api/src/controllers/contactController.js` — new (upcoming)
+- `contact-api/src/domain/contactService.js` — new (upcoming)
 - `contact-frontend/src/App.jsx` — update to render ContactForm
 - `contact-frontend/src/components/ContactForm.jsx` — new
 - `contact-ops/docker-compose.yml` — extend with email env vars

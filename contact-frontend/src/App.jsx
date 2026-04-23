@@ -1,10 +1,10 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import HelloMessage from './components/HelloMessage';
+import ContactForm from './components/ContactForm';
 
 const App = () => (
   <>
     <CssBaseline />
-    <HelloMessage />
+    <ContactForm />
   </>
 );
 

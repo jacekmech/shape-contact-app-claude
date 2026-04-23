@@ -34,10 +34,10 @@
   - [x] Verify `npm test` passes and `node src/server.js` responds correctly to a manual POST
 
 - [ ] Slice 2 — contact-frontend
-  - [ ] Create `src/components/ContactForm.jsx` — MUI form with name, email, message fields; client-side validation on submit; calls `POST /api/contact`; success Alert + field reset on 200; field-level helperText on 422; error Alert on 500; submit disabled while in-flight
-  - [ ] Update `src/App.jsx` to render `ContactForm` in place of `HelloMessage`
-  - [ ] Write component tests in `src/__tests__/ContactForm.test.jsx` — success (200), field errors (422), server error (500); use `vi.stubGlobal('fetch', ...)` and `fireEvent`
-  - [ ] Verify `npm test` passes
+  - [x] Create `src/components/ContactForm.jsx` — MUI form with name, email, message fields; client-side validation on submit; calls `POST /api/contact`; success Alert + field reset on 200; field-level helperText on 422; error Alert on 500; submit disabled while in-flight
+  - [x] Update `src/App.jsx` to render `ContactForm` in place of `HelloMessage`
+  - [x] Write component tests in `src/__tests__/ContactForm.test.jsx` — success (200), field errors (422), server error (500); use `vi.stubGlobal('fetch', ...)` and `fireEvent`
+  - [x] Verify `npm test` passes
 
 - [ ] Slice 3 — Stack wiring
   - _Tasks to be defined during prepare-slice_
@@ -62,8 +62,8 @@
 - `contact-api/src/domain/contactService.js` — validation and mailer call (done)
 - `contact-api/src/controllers/contactController.js` — HTTP handler (done)
 - `contact-api/src/app.js` — POST /api/contact mounted (done)
-- `contact-frontend/src/App.jsx` — update to render ContactForm (Slice 2)
-- `contact-frontend/src/components/ContactForm.jsx` — new (Slice 2)
+- `contact-frontend/src/App.jsx` — renders ContactForm (done)
+- `contact-frontend/src/components/ContactForm.jsx` — MUI form, validation, success/error states (done)
 - `contact-ops/docker-compose.yml` — extend with email env vars (Slice 3)
 - `contact-ops/.env.example` — document new vars (Slice 3)
 

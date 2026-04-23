@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice
-- **Status:** `draft`
+- **Status:** `ready`
 - **Date:** `2026-04-23`
 
 ---

@@ -34,7 +34,10 @@
   - [x] Verify `npm test` passes and `node src/server.js` responds correctly to a manual POST
 
 - [ ] Slice 2 — contact-frontend
-  - _Tasks to be defined during prepare-slice_
+  - [ ] Create `src/components/ContactForm.jsx` — MUI form with name, email, message fields; client-side validation on submit; calls `POST /api/contact`; success Alert + field reset on 200; field-level helperText on 422; error Alert on 500; submit disabled while in-flight
+  - [ ] Update `src/App.jsx` to render `ContactForm` in place of `HelloMessage`
+  - [ ] Write component tests in `src/__tests__/ContactForm.test.jsx` — success (200), field errors (422), server error (500); use `vi.stubGlobal('fetch', ...)` and `fireEvent`
+  - [ ] Verify `npm test` passes
 
 - [ ] Slice 3 — Stack wiring
   - _Tasks to be defined during prepare-slice_
@@ -48,6 +51,7 @@
 - `GET /api/hello` and `HelloMessage` component are left in place; not retired by this feature.
 - Transport selected once at module load time (not per-request) to keep business code free of branching.
 - Mailer is stubbed in tests via `jest.mock('src/infra/mailer')` — no dependency injection in production code.
+- Frontend tests use `fireEvent` (already in `@testing-library/react`) rather than `@testing-library/user-event` which is not in the dependencies.
 
 ---
 
@@ -66,4 +70,4 @@
 ---
 
 ## Notes
-- Next step: `prepare slice` for Slice 2.
+- Next step: `implement batch` for Slice 2.

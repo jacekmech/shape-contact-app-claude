@@ -24,7 +24,14 @@
 ## Execution Order
 
 - [ ] Slice 1 — contact-api scaffold
-  *(tasks to be defined in prepare slice)*
+  - [ ] Initialize `package.json` with Express and a test runner (Jest + supertest)
+  - [ ] Add ESLint config aligned to CLAUDE.md style (single quotes, semicolons)
+  - [ ] Create `src/config.js` reading `HELLO_MESSAGE` from env with default `"Hello, World!"`
+  - [ ] Create `src/controllers/helloController.js` exporting the GET `/api/hello` handler
+  - [ ] Create `src/app.js` setting up Express and mounting the hello router under `/api`
+  - [ ] Create `src/server.js` as the entry point (binds and starts the HTTP server)
+  - [ ] Write unit/integration test verifying `GET /api/hello` returns `200 { message: string }`
+  - [ ] Confirm API runs standalone: `node src/server.js` responds correctly
 
 - [ ] Slice 2 — contact-frontend scaffold
   *(tasks to be defined in prepare slice)*

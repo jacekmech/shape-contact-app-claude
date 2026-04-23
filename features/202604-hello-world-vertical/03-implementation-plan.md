@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice
-- **Status:** `ready`
+- **Status:** `in progress`
 - **Date:** `2026-04-23`
 
 ---
@@ -15,7 +15,7 @@
 
 ## Slices
 
-- [ ] Slice 1 — contact-api: Express scaffold, config module, hello route, unit test
+- [x] Slice 1 — contact-api: Express scaffold, config module, hello route, unit test
 - [ ] Slice 2 — contact-frontend: Vite/React scaffold, config module, HelloMessage component, component test
 - [ ] Slice 3 — Stack wiring: contact-ops Docker Compose, contact-middleware-nginx config, full-stack smoke verification
 
@@ -23,15 +23,15 @@
 
 ## Execution Order
 
-- [ ] Slice 1 — contact-api scaffold
-  - [ ] Initialize `package.json` with Express and a test runner (Jest + supertest)
-  - [ ] Add ESLint config aligned to CLAUDE.md style (single quotes, semicolons)
-  - [ ] Create `src/config.js` reading `HELLO_MESSAGE` from env with default `"Hello, World!"`
-  - [ ] Create `src/controllers/helloController.js` exporting the GET `/api/hello` handler
-  - [ ] Create `src/app.js` setting up Express and mounting the hello router under `/api`
-  - [ ] Create `src/server.js` as the entry point (binds and starts the HTTP server)
-  - [ ] Write unit/integration test verifying `GET /api/hello` returns `200 { message: string }`
-  - [ ] Confirm API runs standalone: `node src/server.js` responds correctly
+- [x] Slice 1 — contact-api scaffold
+  - [x] Initialize `package.json` with Express and a test runner (Jest + supertest)
+  - [x] Add ESLint config aligned to CLAUDE.md style (single quotes, semicolons)
+  - [x] Create `src/config.js` reading `HELLO_MESSAGE` from env with default `"Hello, World!"`
+  - [x] Create `src/controllers/helloController.js` exporting the GET `/api/hello` handler
+  - [x] Create `src/app.js` setting up Express and mounting the hello router under `/api`
+  - [x] Create `src/server.js` as the entry point (binds and starts the HTTP server)
+  - [x] Write unit/integration test verifying `GET /api/hello` returns `200 { message: string }`
+  - [x] Confirm API runs standalone: `node src/server.js` responds correctly
 
 - [ ] Slice 2 — contact-frontend scaffold
   *(tasks to be defined in prepare slice)*
@@ -49,7 +49,12 @@
 
 ## Relevant Files
 
-- `contact-api/` — to be created: `package.json`, `src/config.js`, `src/controllers/helloController.js`, `src/app.js`, `src/server.js`
+- `contact-api/package.json` — Express, Jest, supertest, ESLint
+- `contact-api/src/config.js` — reads PORT and HELLO_MESSAGE from env
+- `contact-api/src/controllers/helloController.js` — GET /api/hello handler
+- `contact-api/src/app.js` — Express app, mounts hello route
+- `contact-api/src/server.js` — entry point
+- `contact-api/src/__tests__/hello.test.js` — integration test via supertest
 - `contact-frontend/` — to be created: `package.json`, `vite.config.js`, `src/config.js`, `src/components/HelloMessage.jsx`, `src/App.jsx`
 - `contact-ops/` — to be created: `docker-compose.yml`, `.env.example`
 - `contact-middleware-nginx/` — to be created: `nginx.conf`

@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice
-- **Status:** `in progress`
+- **Status:** `done`
 - **Date:** `2026-04-23`
 
 ---
@@ -84,5 +84,5 @@
 ---
 
 ## Notes
-- Slice 3 depends on Slices 1 and 2 being complete. Slices 1 and 2 are independent and could be done in either order.
-- Next step: `prepare slice` for Slice 1 (or consolidate all three if preferred).
+- All three slices completed in a single session.
+- Next step: `finish implementation`.

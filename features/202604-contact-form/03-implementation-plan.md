@@ -27,8 +27,8 @@
   - [x] Extend `src/config.js` with email config vars: `contactRecipient`, `emailTransport`, `smtpHost`, `smtpPort`, `smtpUser`, `smtpPass`, `smtpFrom`
   - [x] Add `nodemailer` to `contact-api` dependencies
   - [x] Create `src/infra/mailer.js` — factory: console transport logs formatted email to stdout; SMTP transport uses nodemailer. Export `send({ name, email, message })`
-  - [ ] Create `src/domain/contactService.js` — validate `name`, `email`, `message`; call `mailer.send()`; return structured result
-  - [ ] Create `src/controllers/contactController.js` — parse request body, call `contactService`, map result to `200 / 422 / 500`
+  - [x] Create `src/domain/contactService.js` — validate `name`, `email`, `message`; call `mailer.send()`; return structured result
+  - [x] Create `src/controllers/contactController.js` — parse request body, call `contactService`, map result to `200 / 422 / 500`
   - [ ] Mount `POST /api/contact` in `src/app.js`; add `express.json()` middleware if not already present
   - [ ] Write integration tests in `src/__tests__/contact.test.js` — valid payload → 200, missing/invalid fields → 422 with field errors, mailer failure → 500; stub mailer via `jest.mock`
   - [ ] Verify `npm test` passes and `node src/server.js` responds correctly to a manual POST

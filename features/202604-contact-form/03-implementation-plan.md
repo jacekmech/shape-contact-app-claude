@@ -40,9 +40,9 @@
   - [x] Verify `npm test` passes
 
 - [ ] Slice 3 — Stack wiring
-  - [ ] Extend `contact-api` service in `docker-compose.yml` with email env vars: `CONTACT_RECIPIENT`, `EMAIL_TRANSPORT` (default `console`), `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`
-  - [ ] Update `contact-ops/.env.example` to document all new email config vars with comments
-  - [ ] Smoke verify: `docker compose up` from `contact-ops`, submit the form, confirm API console shows email output
+  - [x] Extend `contact-api` service in `docker-compose.yml` with email env vars: `CONTACT_RECIPIENT`, `EMAIL_TRANSPORT` (default `console`), `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`
+  - [x] Update `contact-ops/.env.example` to document all new email config vars with comments
+  - [x] Smoke verify: `docker compose up` from `contact-ops`, submit the form, confirm API console shows email output
 
 ---
 

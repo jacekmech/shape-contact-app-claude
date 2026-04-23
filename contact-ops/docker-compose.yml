@@ -5,6 +5,13 @@ services:
     environment:
       PORT: 3000
       HELLO_MESSAGE: ${HELLO_MESSAGE:-Hello, World!}
+      CONTACT_RECIPIENT: ${CONTACT_RECIPIENT:-}
+      EMAIL_TRANSPORT: ${EMAIL_TRANSPORT:-console}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-}
     networks:
       - app
 

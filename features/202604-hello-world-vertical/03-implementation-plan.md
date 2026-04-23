@@ -17,7 +17,7 @@
 
 - [x] Slice 1 — contact-api: Express scaffold, config module, hello route, unit test
 - [x] Slice 2 — contact-frontend: Vite/React scaffold, config module, HelloMessage component, component test
-- [ ] Slice 3 — Stack wiring: contact-ops Docker Compose, contact-middleware-nginx config, full-stack smoke verification
+- [x] Slice 3 — Stack wiring: contact-ops Docker Compose, contact-middleware-nginx config, full-stack smoke verification
 
 ---
 
@@ -45,13 +45,13 @@
   - [x] Write component test for HelloMessage: mock fetch, verify message renders on success and error text renders on failure
   - [x] Confirm frontend runs standalone: `npm run dev`
 
-- [ ] Slice 3 — Stack wiring
-  - [ ] Create `contact-api/Dockerfile` (Node 18, runs `node src/server.js`)
-  - [ ] Create `contact-frontend/Dockerfile` (Node 18, runs Vite dev server with `--host`)
-  - [ ] Create `contact-middleware-nginx/nginx.conf` — proxies `/api/` to `contact-api:3000`, `/*` to `contact-frontend:5173`
-  - [ ] Create `contact-ops/docker-compose.yml` — three services on a shared network, nginx exposed on port 80
-  - [ ] Create `contact-ops/.env.example` documenting configurable vars
-  - [ ] Verify full stack: `docker compose up` from `contact-ops`, confirm `http://localhost` serves the greeting
+- [x] Slice 3 — Stack wiring
+  - [x] Create `contact-api/Dockerfile` (Node 18, runs `node src/server.js`)
+  - [x] Create `contact-frontend/Dockerfile` (Node 18, runs Vite dev server with `--host`)
+  - [x] Create `contact-middleware-nginx/nginx.conf` — proxies `/api/` to `contact-api:3000`, `/*` to `contact-frontend:5173`
+  - [x] Create `contact-ops/docker-compose.yml` — three services on a shared network, nginx exposed on port 80
+  - [x] Create `contact-ops/.env.example` documenting configurable vars
+  - [x] Verify full stack: `docker compose up` from `contact-ops`, confirm `http://localhost` serves the greeting
 
 ---
 
@@ -75,8 +75,11 @@
 - `contact-frontend/src/components/HelloMessage.jsx` — fetches /api/hello, loading/message/error states
 - `contact-frontend/src/App.jsx` — root, CssBaseline + HelloMessage
 - `contact-frontend/src/__tests__/HelloMessage.test.jsx` — 2 tests: success + error
-- `contact-ops/` — to be created: `docker-compose.yml`, `.env.example`
-- `contact-middleware-nginx/` — to be created: `nginx.conf`
+- `contact-api/Dockerfile` — Node 18 alpine, production deps only
+- `contact-frontend/Dockerfile` — Node 18 alpine, Vite dev server with --host
+- `contact-middleware-nginx/nginx.conf` — proxies /api/ to contact-api:3000, /* to contact-frontend:5173
+- `contact-ops/docker-compose.yml` — three services, shared network, nginx on port 80
+- `contact-ops/.env.example` — documents HELLO_MESSAGE
 
 ---
 

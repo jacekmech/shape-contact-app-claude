@@ -16,7 +16,7 @@
 ## Slices
 
 - [x] Slice 1 — contact-api: Express scaffold, config module, hello route, unit test
-- [ ] Slice 2 — contact-frontend: Vite/React scaffold, config module, HelloMessage component, component test
+- [x] Slice 2 — contact-frontend: Vite/React scaffold, config module, HelloMessage component, component test
 - [ ] Slice 3 — Stack wiring: contact-ops Docker Compose, contact-middleware-nginx config, full-stack smoke verification
 
 ---
@@ -33,17 +33,17 @@
   - [x] Write unit/integration test verifying `GET /api/hello` returns `200 { message: string }`
   - [x] Confirm API runs standalone: `node src/server.js` responds correctly
 
-- [ ] Slice 2 — contact-frontend scaffold
-  - [ ] Initialize `package.json` with Vite, React, MUI, and Vitest + React Testing Library
-  - [ ] Add `vite.config.js` with test environment configured (jsdom)
-  - [ ] Add ESLint config for JSX/React
-  - [ ] Create `index.html` (Vite entry point)
-  - [ ] Create `src/config.js` reading `VITE_API_BASE_URL` from `import.meta.env` with default `/api`
-  - [ ] Create `src/main.jsx` as the app entry point
-  - [ ] Create `src/App.jsx` rendering the HelloMessage component
-  - [ ] Create `src/components/HelloMessage.jsx` — fetches `GET /api/hello` on mount, three states: loading / message / error; rendered with MUI
-  - [ ] Write component test for HelloMessage: mock fetch, verify message renders on success and error text renders on failure
-  - [ ] Confirm frontend runs standalone: `npm run dev`
+- [x] Slice 2 — contact-frontend scaffold
+  - [x] Initialize `package.json` with Vite, React, MUI, and Vitest + React Testing Library
+  - [x] Add `vite.config.js` with test environment configured (jsdom)
+  - [x] Add ESLint config for JSX/React
+  - [x] Create `index.html` (Vite entry point)
+  - [x] Create `src/config.js` reading `VITE_API_BASE_URL` from `import.meta.env` with default `/api`
+  - [x] Create `src/main.jsx` as the app entry point
+  - [x] Create `src/App.jsx` rendering the HelloMessage component
+  - [x] Create `src/components/HelloMessage.jsx` — fetches `GET /api/hello` on mount, three states: loading / message / error; rendered with MUI
+  - [x] Write component test for HelloMessage: mock fetch, verify message renders on success and error text renders on failure
+  - [x] Confirm frontend runs standalone: `npm run dev`
 
 - [ ] Slice 3 — Stack wiring
   *(tasks to be defined in prepare slice)*
@@ -64,7 +64,12 @@
 - `contact-api/src/app.js` — Express app, mounts hello route
 - `contact-api/src/server.js` — entry point
 - `contact-api/src/__tests__/hello.test.js` — integration test via supertest
-- `contact-frontend/` — to be created: `package.json`, `vite.config.js`, `src/config.js`, `src/components/HelloMessage.jsx`, `src/App.jsx`
+- `contact-frontend/package.json` — Vite, React, MUI, Vitest + RTL
+- `contact-frontend/vite.config.js` — jsdom test env, globals
+- `contact-frontend/src/config.js` — reads VITE_API_BASE_URL from import.meta.env
+- `contact-frontend/src/components/HelloMessage.jsx` — fetches /api/hello, loading/message/error states
+- `contact-frontend/src/App.jsx` — root, CssBaseline + HelloMessage
+- `contact-frontend/src/__tests__/HelloMessage.test.jsx` — 2 tests: success + error
 - `contact-ops/` — to be created: `docker-compose.yml`, `.env.example`
 - `contact-middleware-nginx/` — to be created: `nginx.conf`
 

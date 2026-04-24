@@ -17,7 +17,7 @@
 
 - **Slice 1: API module**
   - **Goal:** Bootstrap the `contact-api` Express application — package setup, config module, hello controller, app wiring, server entry point, Dockerfile, and one integration test for `GET /api/hello`.
-  - **Status:** `in progress`
+  - **Status:** `done`
 
 - **Slice 2: Frontend module**
   - **Goal:** Bootstrap the `contact-frontend` Vite + React + MUI application — package setup, config module, App component with hello fetch on mount, success and error render states, Dockerfile, and one component test.
@@ -31,7 +31,7 @@
 
 ## Execution Order
 
-- Slice 1: API module (`in progress`)
+- Slice 1: API module (`done`)
   - [x] Initialize `contact-api` npm package — `package.json` with Express, Jest, and Supertest; `start` and `test` scripts
   - [x] Add `src/config.js` — reads `HELLO_MESSAGE` and `PORT` from env, exports `{ helloMessage, port }` with defaults
   - [x] Add `src/controllers/hello.controller.js` — request handler that reads `config.helloMessage` and returns `{ message }`
@@ -56,19 +56,14 @@
 
 ## Relevant Files
 
-- `contact-api/src/config.js`
-- `contact-api/src/app.js`
-- `contact-api/src/index.js`
-- `contact-api/src/controllers/hello.controller.js`
-- `contact-api/package.json`
-- `contact-api/Dockerfile`
-- `contact-frontend/src/config.js`
-- `contact-frontend/src/App.jsx`
-- `contact-frontend/package.json`
-- `contact-frontend/Dockerfile`
-- `contact-middleware-nginx/nginx.conf`
-- `contact-ops/docker-compose.yml`
-- `contact-ops/.env.example`
+- `contact-api/src/app.js` — API contract reference for the frontend fetch
+- `contact-frontend/src/config.js` — to be created; centralizes VITE_API_BASE_URL
+- `contact-frontend/src/App.jsx` — to be created; hello fetch + render
+- `contact-frontend/package.json` — to be created
+- `contact-frontend/Dockerfile` — to be created
+- `contact-middleware-nginx/nginx.conf` — to be created (Slice 3)
+- `contact-ops/docker-compose.yml` — to be created (Slice 3)
+- `contact-ops/.env.example` — to be created (Slice 3)
 
 ---
 

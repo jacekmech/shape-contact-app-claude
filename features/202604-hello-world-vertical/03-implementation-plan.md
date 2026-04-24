@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice
-- **Status:** `in progress`
+- **Status:** `done`
 - **Date:** 2026-04-24
 
 ---
@@ -70,15 +70,15 @@
 
 ## Relevant Files
 
-- `contact-api/src/index.js` — listens on port 3001; service name needed in Docker Compose
-- `contact-frontend/vite.config.js` — dev server on port 3000 with `host: true`
-- `contact-middleware-nginx/nginx.conf` — to be created; routes /api/ → API, rest → frontend
-- `contact-ops/docker-compose.yml` — to be created; wires all three services
-- `contact-ops/.env.example` — to be created; documents HELLO_MESSAGE
+- `contact-api/src/app.js` — Express app, GET /api/hello endpoint
+- `contact-frontend/src/App.jsx` — fetch on mount, message/error render
+- `contact-middleware-nginx/nginx.conf` — nginx proxy routing
+- `contact-ops/docker-compose.yml` — full stack orchestration
+- `contact-ops/README.md` — local dev instructions
 
 ---
 
 ## Notes
 - Slices are sequenced API → frontend → ops. The API contract is established first so the frontend can be written against it. Ops wires the two together last and serves as the integration checkpoint.
-- Each slice should be executed in a fresh agent session starting with `pick up feature`.
 - Linting and formatting tooling (ESLint, Prettier) is deferred — can be added in a later feature if needed.
+- Implementation complete. All three slices delivered and committed.

@@ -21,7 +21,7 @@
 
 - **Slice 2: Frontend — contact form UI**
   - **Goal:** Replace the hello world UI in `contact-frontend` with the contact form. Includes: controlled form inputs for name, email, and message; client-side validation mirroring backend rules; API call to `POST /api/contact`; success alert at top with form reset; inline field errors for validation failures; generic error alert for system errors; and component tests.
-  - **Status:** `in progress`
+  - **Status:** `done`
 
 - **Slice 3: Ops wiring & end-to-end smoke test**
   - **Goal:** Extend `contact-ops` docker-compose.yml and `.env.example` with email environment variables for the api service. Verify the full flow works with `docker compose up` — submit the form in a browser and confirm the email payload appears in the api container logs.
@@ -40,7 +40,7 @@
   - [x] Update `contact-api/src/app.js` — add `express.json()` middleware and wire `POST /api/contact`
   - [x] Add unit tests for domain validation in `contact-api/src/__tests__/contact.domain.test.js`
   - [x] Add integration tests for `POST /api/contact` in `contact-api/src/__tests__/contact.test.js` — mailer mocked via `jest.mock`
-- Slice 2: Frontend — contact form UI (`in progress`)
+- Slice 2: Frontend — contact form UI (`done`)
   - [x] Replace `contact-frontend/src/App.jsx` with the contact form — controlled inputs for name, email, and message; local field error state; submit handler with client-side validation mirroring backend rules
   - [x] Add API integration to `App.jsx` — `POST /api/contact` via `config.apiBaseUrl`; success alert at top + form reset; inline field errors from 422 responses; generic error alert from 500/network errors; submit button disabled while in flight
   - [x] Replace `contact-frontend/src/__tests__/App.test.jsx` with component tests — form renders all three fields, empty submit shows inline errors, valid submit shows success alert and resets form, API error shows generic error alert
@@ -57,12 +57,9 @@
 
 ## Relevant Files
 
-- `contact-frontend/src/App.jsx` — replace with contact form UI
-- `contact-frontend/src/__tests__/App.test.jsx` — update for new UI
-- `contact-frontend/package.json` — no new deps expected
-- `contact-api/src/domain/contact.js` — validation rules to mirror on the frontend
-- `contact-ops/docker-compose.yml` — add email env vars to api service (Slice 3)
-- `contact-ops/.env.example` — document email env vars (Slice 3)
+- `contact-ops/docker-compose.yml` — add email env vars to api service
+- `contact-ops/.env.example` — document email env vars
+- `contact-api/src/config.js` — reference for env var names
 
 ---
 

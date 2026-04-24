@@ -43,7 +43,7 @@
 - Slice 2: Frontend — contact form UI (`in progress`)
   - [x] Replace `contact-frontend/src/App.jsx` with the contact form — controlled inputs for name, email, and message; local field error state; submit handler with client-side validation mirroring backend rules
   - [x] Add API integration to `App.jsx` — `POST /api/contact` via `config.apiBaseUrl`; success alert at top + form reset; inline field errors from 422 responses; generic error alert from 500/network errors; submit button disabled while in flight
-  - [ ] Replace `contact-frontend/src/__tests__/App.test.jsx` with component tests — form renders all three fields, empty submit shows inline errors, valid submit shows success alert and resets form, API error shows generic error alert
+  - [x] Replace `contact-frontend/src/__tests__/App.test.jsx` with component tests — form renders all three fields, empty submit shows inline errors, valid submit shows success alert and resets form, API error shows generic error alert
 - Slice 3: Ops wiring & end-to-end smoke test (`draft`)
 
 ---

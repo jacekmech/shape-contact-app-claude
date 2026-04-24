@@ -2,82 +2,70 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice
-- **Status:** `draft`
+- **Status:** `ready`
 - **Date:** 2026-04-24
 
 ---
 
 ## Objective
-- **What is being delivered:**
-- **Key constraints:**
+- **What is being delivered:** A fully running local stack that proves end-to-end connectivity across all four modules. The API reads `HELLO_MESSAGE` from its environment and serves it via `GET /api/hello`. The frontend fetches and displays the message through nginx. Everything starts with a single `docker compose up`.
+- **Key constraints:** All modules start empty. Each module must be bootstrapped from scratch with production-shaped structure. No throwaway scaffold code.
 
 ---
 
 ## Slices
 
-Defines the high-level structure of execution.
+- **Slice 1: API module**
+  - **Goal:** Bootstrap the `contact-api` Express application — package setup, config module, hello controller, app wiring, server entry point, Dockerfile, and one integration test for `GET /api/hello`.
+  - **Status:** `draft`
 
-Rules:
-- Slices use explicit lifecycle status rather than checkboxes.
-- New slices may be appended during implementation.
-- Initial slices created during `plan implementation` start as `draft`.
-- A selected slice moves to `ready` after approved planning in `plan slice`.
-- A `ready` slice moves to `in progress` when the first approved task in that slice is marked done.
-- A slice moves to `done` only through explicit validation in `finish slice`.
-- Each Slice should remain small enough to fit within a single focused agent session.
-- Each new Slice should normally be executed in a fresh agent session.
-- Fresh execution sessions should normally begin by resolving the active feature through **Pick Up Feature** unless the active feature is already unambiguous.
+- **Slice 2: Frontend module**
+  - **Goal:** Bootstrap the `contact-frontend` Vite + React + MUI application — package setup, config module, App component with hello fetch on mount, success and error render states, Dockerfile, and one component test.
+  - **Status:** `draft`
+
+- **Slice 3: Ops & middleware**
+  - **Goal:** Wire all services together — nginx config in `contact-middleware-nginx`, Docker Compose in `contact-ops` with service definitions, networking, `.env.example`, and environment wiring. Verified by `docker compose up` and a message visible in the browser.
+  - **Status:** `draft`
 
 ---
 
 ## Execution Order
 
-This is the central workspace of the Implementation Plan.
+- Slice 1: API module (`draft`)
 
-Rules:
-- Slice entries here correspond to the explicit slice definitions in `## Slices`.
-- Implementation Tasks use checkboxes to indicate progress (`done / not done`).
-- Implementation Tasks are appended continuously during execution.
-- Developer selects tasks for execution in batches (batches are not explicitly represented).
-- This is the only place where sequencing exists.
-- Progress is reflected inline through task completion and slice status.
-- Batches should remain small enough for a single high-quality developer review step.
-- Tasks should be marked done only after developer approval of the implemented batch.
-- An approved batch should be committed only on explicit developer instruction before the next batch begins so that review boundaries remain clean.
+- Slice 2: Frontend module (`draft`)
+
+- Slice 3: Ops & middleware (`draft`)
 
 ---
 
 ## Important Decisions
 
-Captures implementation-time decisions made during execution.
-
-Use for:
-- clarifications not worth updating Technical Concept
-- trade-offs discovered during coding
-- cross-slice implications
+- nginx routes `/api/` to the API container (port 3001) and everything else to the frontend container (port 3000). Both are on internal Docker networking only; nginx is the sole external entry point on port 80.
+- The Vite dev server runs inside the frontend container for local development; nginx proxies to it. This avoids a static build step in the local developer loop.
+- The frontend calls `/api/hello` as a relative URL (same-origin via nginx). No absolute API URL is needed.
 
 ---
 
 ## Relevant Files
 
-Curated working file map for upcoming execution.
-
-Use for:
-- files or directories likely to matter for upcoming Slices
-- anchor files that help a fresh session pick up the feature efficiently
-- major code areas already touched that are still relevant to subsequent work
-
-Rules:
-- Keep this section selective and compact.
-- It is a working context map, not a full file inventory.
-- Entries may be added, updated, or removed during implementation as relevance changes.
-- Prefer files or directories that improve fresh-session pickup and context curation.
-- Do not use this section to track task-level progress.
-- Do not treat this section as a historical changelog of all touched files.
+- `contact-api/src/config.js`
+- `contact-api/src/app.js`
+- `contact-api/src/index.js`
+- `contact-api/src/controllers/hello.controller.js`
+- `contact-api/package.json`
+- `contact-api/Dockerfile`
+- `contact-frontend/src/config.js`
+- `contact-frontend/src/App.jsx`
+- `contact-frontend/package.json`
+- `contact-frontend/Dockerfile`
+- `contact-middleware-nginx/nginx.conf`
+- `contact-ops/docker-compose.yml`
+- `contact-ops/.env.example`
 
 ---
 
 ## Notes
-- Additional observations
-- Clarifications
-- Suggested next step when useful for keeping execution flow obvious
+- Slices are sequenced API → frontend → ops. The API contract is established first so the frontend can be written against it. Ops wires the two together last and serves as the integration checkpoint.
+- Each slice should be executed in a fresh agent session starting with `pick up feature`.
+- Linting and formatting tooling (ESLint, Prettier) is deferred — can be added in a later feature if needed.

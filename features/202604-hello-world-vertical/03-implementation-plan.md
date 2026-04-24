@@ -37,8 +37,8 @@
   - [x] Add `src/controllers/hello.controller.js` — request handler that reads `config.helloMessage` and returns `{ message }`
   - [x] Add `src/app.js` — Express app, mounts a router at `/api` with the hello route
   - [x] Add `src/index.js` — starts the HTTP server on `config.port`
-  - [ ] Add `Dockerfile` — Node 20 Alpine, installs deps, runs `npm start`
-  - [ ] Add integration test — `GET /api/hello` returns 200 with a `message` field; covers the default value and a custom `HELLO_MESSAGE`
+  - [x] Add `Dockerfile` — Node 20 Alpine, installs deps, runs `npm start`
+  - [x] Add integration test — `GET /api/hello` returns 200 with a `message` field; covers the default value and a custom `HELLO_MESSAGE`
 
 - Slice 2: Frontend module (`draft`)
 

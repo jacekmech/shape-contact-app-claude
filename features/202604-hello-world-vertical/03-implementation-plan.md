@@ -46,8 +46,8 @@
   - [x] Add `index.html` and `src/main.jsx` — Vite HTML entry point and React root mount
   - [x] Add `src/config.js` — reads `VITE_API_BASE_URL` from `import.meta.env`, exports `{ apiBaseUrl }` defaulting to `''`
   - [x] Add `src/App.jsx` — fetches `${apiBaseUrl}/api/hello` on mount, manages `{ message, error }` state, renders MUI `Typography` for success and `Alert` for error
-  - [ ] Add `Dockerfile` — Node 20 Alpine, runs `npm run dev` bound to all interfaces
-  - [ ] Add component test — mocks `fetch`, asserts message renders on success and error text renders on failure
+  - [x] Add `Dockerfile` — Node 20 Alpine, runs `npm run dev` bound to all interfaces
+  - [x] Add component test — mocks `fetch`, asserts message renders on success and error text renders on failure
 
 - Slice 3: Ops & middleware (`draft`)
 

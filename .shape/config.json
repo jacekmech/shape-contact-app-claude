@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "featuresRoot": "features",
+  "artifacts": {
+    "prd": "01-prd.md",
+    "technicalConcept": "02-tech-concept.md",
+    "implementationPlan": "03-implementation-plan.md"
+  },
+  "skills": {
+    "managed": [
+      "initiate-feature",
+      "pick-up-feature",
+      "show-status",
+      "show-capabilities",
+      "create-prd",
+      "update-prd",
+      "create-technical-concept",
+      "update-technical-concept",
+      "plan-implementation",
+      "update-implementation-plan",
+      "plan-slice",
+      "implement-batch",
+      "finish-slice",
+      "finish-feature"
+    ]
+  }
+}

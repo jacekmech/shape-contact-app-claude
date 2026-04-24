@@ -25,7 +25,7 @@
 
 - **Slice 3: Ops wiring & end-to-end smoke test**
   - **Goal:** Extend `contact-ops` docker-compose.yml and `.env.example` with email environment variables for the api service. Verify the full flow works with `docker compose up` — submit the form in a browser and confirm the email payload appears in the api container logs.
-  - **Status:** `draft`
+  - **Status:** `ready`
 
 ---
 
@@ -44,7 +44,10 @@
   - [x] Replace `contact-frontend/src/App.jsx` with the contact form — controlled inputs for name, email, and message; local field error state; submit handler with client-side validation mirroring backend rules
   - [x] Add API integration to `App.jsx` — `POST /api/contact` via `config.apiBaseUrl`; success alert at top + form reset; inline field errors from 422 responses; generic error alert from 500/network errors; submit button disabled while in flight
   - [x] Replace `contact-frontend/src/__tests__/App.test.jsx` with component tests — form renders all three fields, empty submit shows inline errors, valid submit shows success alert and resets form, API error shows generic error alert
-- Slice 3: Ops wiring & end-to-end smoke test (`draft`)
+- Slice 3: Ops wiring & end-to-end smoke test (`ready`)
+  - [ ] Update `contact-ops/docker-compose.yml` — add email env vars to the api service: `EMAIL_TRANSPORT`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`, and optional SMTP vars
+  - [ ] Update `contact-ops/.env.example` — document all email env vars with dev defaults and brief comments
+  - [ ] Manual smoke test — run `docker compose up`, submit the form in the browser, confirm email payload appears in `docker compose logs api`
 
 ---
 

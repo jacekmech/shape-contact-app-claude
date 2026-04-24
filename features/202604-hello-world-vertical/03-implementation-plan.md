@@ -2,7 +2,7 @@
 
 ## Header
 - **Title:** Hello World Vertical Slice
-- **Status:** `ready`
+- **Status:** `in progress`
 - **Date:** 2026-04-24
 
 ---
@@ -17,7 +17,7 @@
 
 - **Slice 1: API module**
   - **Goal:** Bootstrap the `contact-api` Express application — package setup, config module, hello controller, app wiring, server entry point, Dockerfile, and one integration test for `GET /api/hello`.
-  - **Status:** `ready`
+  - **Status:** `in progress`
 
 - **Slice 2: Frontend module**
   - **Goal:** Bootstrap the `contact-frontend` Vite + React + MUI application — package setup, config module, App component with hello fetch on mount, success and error render states, Dockerfile, and one component test.
@@ -31,12 +31,12 @@
 
 ## Execution Order
 
-- Slice 1: API module (`ready`)
-  - [ ] Initialize `contact-api` npm package — `package.json` with Express, Jest, and Supertest; `start` and `test` scripts
-  - [ ] Add `src/config.js` — reads `HELLO_MESSAGE` and `PORT` from env, exports `{ helloMessage, port }` with defaults
-  - [ ] Add `src/controllers/hello.controller.js` — request handler that reads `config.helloMessage` and returns `{ message }`
-  - [ ] Add `src/app.js` — Express app, mounts a router at `/api` with the hello route
-  - [ ] Add `src/index.js` — starts the HTTP server on `config.port`
+- Slice 1: API module (`in progress`)
+  - [x] Initialize `contact-api` npm package — `package.json` with Express, Jest, and Supertest; `start` and `test` scripts
+  - [x] Add `src/config.js` — reads `HELLO_MESSAGE` and `PORT` from env, exports `{ helloMessage, port }` with defaults
+  - [x] Add `src/controllers/hello.controller.js` — request handler that reads `config.helloMessage` and returns `{ message }`
+  - [x] Add `src/app.js` — Express app, mounts a router at `/api` with the hello route
+  - [x] Add `src/index.js` — starts the HTTP server on `config.port`
   - [ ] Add `Dockerfile` — Node 20 Alpine, installs deps, runs `npm start`
   - [ ] Add integration test — `GET /api/hello` returns 200 with a `message` field; covers the default value and a custom `HELLO_MESSAGE`
 

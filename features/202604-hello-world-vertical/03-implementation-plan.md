@@ -21,7 +21,7 @@
 
 - **Slice 2: Frontend module**
   - **Goal:** Bootstrap the `contact-frontend` Vite + React + MUI application — package setup, config module, App component with hello fetch on mount, success and error render states, Dockerfile, and one component test.
-  - **Status:** `ready`
+  - **Status:** `in progress`
 
 - **Slice 3: Ops & middleware**
   - **Goal:** Wire all services together — nginx config in `contact-middleware-nginx`, Docker Compose in `contact-ops` with service definitions, networking, `.env.example`, and environment wiring. Verified by `docker compose up` and a message visible in the browser.
@@ -40,12 +40,12 @@
   - [x] Add `Dockerfile` — Node 20 Alpine, installs deps, runs `npm start`
   - [x] Add integration test — `GET /api/hello` returns 200 with a `message` field; covers the default value and a custom `HELLO_MESSAGE`
 
-- Slice 2: Frontend module (`ready`)
-  - [ ] Initialize `contact-frontend` project — `package.json` with React 18, Vite 5, MUI v6, Vitest, and React Testing Library; `dev`, `build`, and `test` scripts
-  - [ ] Add `vite.config.js` — React plugin, dev server on port 3000 with `host: true`, Vitest jsdom environment; add `src/setupTests.js` for Testing Library matchers
-  - [ ] Add `index.html` and `src/main.jsx` — Vite HTML entry point and React root mount
-  - [ ] Add `src/config.js` — reads `VITE_API_BASE_URL` from `import.meta.env`, exports `{ apiBaseUrl }` defaulting to `''`
-  - [ ] Add `src/App.jsx` — fetches `${apiBaseUrl}/api/hello` on mount, manages `{ message, error }` state, renders MUI `Typography` for success and `Alert` for error
+- Slice 2: Frontend module (`in progress`)
+  - [x] Initialize `contact-frontend` project — `package.json` with React 18, Vite 5, MUI v6, Vitest, and React Testing Library; `dev`, `build`, and `test` scripts
+  - [x] Add `vite.config.js` — React plugin, dev server on port 3000 with `host: true`, Vitest jsdom environment; add `src/setupTests.js` for Testing Library matchers
+  - [x] Add `index.html` and `src/main.jsx` — Vite HTML entry point and React root mount
+  - [x] Add `src/config.js` — reads `VITE_API_BASE_URL` from `import.meta.env`, exports `{ apiBaseUrl }` defaulting to `''`
+  - [x] Add `src/App.jsx` — fetches `${apiBaseUrl}/api/hello` on mount, manages `{ message, error }` state, renders MUI `Typography` for success and `Alert` for error
   - [ ] Add `Dockerfile` — Node 20 Alpine, runs `npm run dev` bound to all interfaces
   - [ ] Add component test — mocks `fetch`, asserts message renders on success and error text renders on failure
 

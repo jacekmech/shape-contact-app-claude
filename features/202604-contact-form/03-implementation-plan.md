@@ -38,8 +38,8 @@
   - [x] Create `contact-api/src/infra/mailer.js` — `sendContactEmail(submission)` selecting transport from config (console / file / smtp)
   - [x] Create `contact-api/src/controllers/contact.controller.js` — thin HTTP handler
   - [x] Update `contact-api/src/app.js` — add `express.json()` middleware and wire `POST /api/contact`
-  - [ ] Add unit tests for domain validation in `contact-api/src/__tests__/contact.domain.test.js`
-  - [ ] Add integration tests for `POST /api/contact` in `contact-api/src/__tests__/contact.test.js` — mailer mocked via `jest.mock`
+  - [x] Add unit tests for domain validation in `contact-api/src/__tests__/contact.domain.test.js`
+  - [x] Add integration tests for `POST /api/contact` in `contact-api/src/__tests__/contact.test.js` — mailer mocked via `jest.mock`
 - Slice 2: Frontend — contact form UI (`draft`)
 - Slice 3: Ops wiring & end-to-end smoke test (`draft`)
 

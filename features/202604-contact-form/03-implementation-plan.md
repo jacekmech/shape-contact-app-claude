@@ -17,7 +17,7 @@
 
 - **Slice 1: API — contact submission endpoint**
   - **Goal:** Add `POST /api/contact` to `contact-api`. Includes: nodemailer dependency, config extension with email settings, domain validation module, mailer infra with console/file/SMTP transport selection, contact controller, app wiring (express.json middleware + route), and tests (unit for domain validation, integration for the endpoint).
-  - **Status:** `in progress`
+  - **Status:** `done`
 
 - **Slice 2: Frontend — contact form UI**
   - **Goal:** Replace the hello world UI in `contact-frontend` with the contact form. Includes: controlled form inputs for name, email, and message; client-side validation mirroring backend rules; API call to `POST /api/contact`; success alert at top with form reset; inline field errors for validation failures; generic error alert for system errors; and component tests.
@@ -31,7 +31,7 @@
 
 ## Execution Order
 
-- Slice 1: API — contact submission endpoint (`in progress`)
+- Slice 1: API — contact submission endpoint (`done`)
   - [x] Add `nodemailer` to `contact-api/package.json` dependencies
   - [x] Extend `contact-api/src/config.js` with email settings: `emailTransport`, `smtpHost`, `smtpPort`, `smtpSecure`, `smtpUser`, `smtpPass`, `contactFromEmail`, `contactToEmail`, `emailLogFile`
   - [x] Create `contact-api/src/domain/contact.js` — `validateContact(body)` returning `{ valid, errors }`
@@ -53,17 +53,12 @@
 
 ## Relevant Files
 
-- `contact-api/src/app.js` — add express.json middleware and contact route
-- `contact-api/src/config.js` — extend with email settings
-- `contact-api/src/controllers/contact.controller.js` — new file
-- `contact-api/src/domain/contact.js` — new file (validation)
-- `contact-api/src/infra/mailer.js` — new file (transport factory)
-- `contact-api/src/__tests__/contact.test.js` — new file
-- `contact-api/package.json` — add nodemailer dependency
-- `contact-frontend/src/App.jsx` — replaced with contact form
-- `contact-frontend/src/__tests__/App.test.jsx` — updated for new UI
-- `contact-ops/docker-compose.yml` — add email env vars to api service
-- `contact-ops/.env.example` — document email env vars
+- `contact-frontend/src/App.jsx` — replace with contact form UI
+- `contact-frontend/src/__tests__/App.test.jsx` — update for new UI
+- `contact-frontend/package.json` — no new deps expected
+- `contact-api/src/domain/contact.js` — validation rules to mirror on the frontend
+- `contact-ops/docker-compose.yml` — add email env vars to api service (Slice 3)
+- `contact-ops/.env.example` — document email env vars (Slice 3)
 
 ---
 

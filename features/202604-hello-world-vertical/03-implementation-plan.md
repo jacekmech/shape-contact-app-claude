@@ -25,7 +25,7 @@
 
 - **Slice 3: Ops & middleware**
   - **Goal:** Wire all services together — nginx config in `contact-middleware-nginx`, Docker Compose in `contact-ops` with service definitions, networking, `.env.example`, and environment wiring. Verified by `docker compose up` and a message visible in the browser.
-  - **Status:** `ready`
+  - **Status:** `in progress`
 
 ---
 
@@ -49,12 +49,12 @@
   - [x] Add `Dockerfile` — Node 20 Alpine, runs `npm run dev` bound to all interfaces
   - [x] Add component test — mocks `fetch`, asserts message renders on success and error text renders on failure
 
-- Slice 3: Ops & middleware (`ready`)
-  - [ ] Add `contact-middleware-nginx/nginx.conf` — listens on port 80; routes `/api/` → `http://api:3001` (prefix preserved); routes everything else → `http://frontend:3000` with WebSocket upgrade headers for Vite HMR
-  - [ ] Add `contact-middleware-nginx/Dockerfile` — extends `nginx:alpine`, copies `nginx.conf`
-  - [ ] Add `contact-ops/docker-compose.yml` — three services (`api`, `frontend`, `nginx`) on a shared bridge network; nginx maps port 80 externally; `HELLO_MESSAGE` wired to `api` with default fallback
-  - [ ] Add `contact-ops/.env.example` — documents `HELLO_MESSAGE` with a default value
-  - [ ] Add `contact-ops/.gitignore` — ignores `.env`
+- Slice 3: Ops & middleware (`in progress`)
+  - [x] Add `contact-middleware-nginx/nginx.conf` — listens on port 80; routes `/api/` → `http://api:3001` (prefix preserved); routes everything else → `http://frontend:3000` with WebSocket upgrade headers for Vite HMR
+  - [x] Add `contact-middleware-nginx/Dockerfile` — extends `nginx:alpine`, copies `nginx.conf`
+  - [x] Add `contact-ops/docker-compose.yml` — three services (`api`, `frontend`, `nginx`) on a shared bridge network; nginx maps port 80 externally; `HELLO_MESSAGE` wired to `api` with default fallback
+  - [x] Add `contact-ops/.env.example` — documents `HELLO_MESSAGE` with a default value
+  - [x] Add `contact-ops/.gitignore` — ignores `.env`
 
 ---
 

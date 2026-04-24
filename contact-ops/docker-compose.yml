@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: ../contact-api
+    environment:
+      - HELLO_MESSAGE=${HELLO_MESSAGE:-Hello, world!}
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ../contact-frontend
+    networks:
+      - app-network
+
+  nginx:
+    build:
+      context: ../contact-middleware-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+      - frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

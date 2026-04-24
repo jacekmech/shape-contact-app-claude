@@ -17,7 +17,7 @@
 
 - **Slice 1: API — contact submission endpoint**
   - **Goal:** Add `POST /api/contact` to `contact-api`. Includes: nodemailer dependency, config extension with email settings, domain validation module, mailer infra with console/file/SMTP transport selection, contact controller, app wiring (express.json middleware + route), and tests (unit for domain validation, integration for the endpoint).
-  - **Status:** `draft`
+  - **Status:** `ready`
 
 - **Slice 2: Frontend — contact form UI**
   - **Goal:** Replace the hello world UI in `contact-frontend` with the contact form. Includes: controlled form inputs for name, email, and message; client-side validation mirroring backend rules; API call to `POST /api/contact`; success alert at top with form reset; inline field errors for validation failures; generic error alert for system errors; and component tests.
@@ -31,13 +31,23 @@
 
 ## Execution Order
 
-- Slice 1: API — contact submission endpoint (`draft`)
+- Slice 1: API — contact submission endpoint (`ready`)
+  - [ ] Add `nodemailer` to `contact-api/package.json` dependencies
+  - [ ] Extend `contact-api/src/config.js` with email settings: `emailTransport`, `smtpHost`, `smtpPort`, `smtpSecure`, `smtpUser`, `smtpPass`, `contactFromEmail`, `contactToEmail`, `emailLogFile`
+  - [ ] Create `contact-api/src/domain/contact.js` — `validateContact(body)` returning `{ valid, errors }`
+  - [ ] Create `contact-api/src/infra/mailer.js` — `sendContactEmail(submission)` selecting transport from config (console / file / smtp)
+  - [ ] Create `contact-api/src/controllers/contact.controller.js` — thin HTTP handler
+  - [ ] Update `contact-api/src/app.js` — add `express.json()` middleware and wire `POST /api/contact`
+  - [ ] Add unit tests for domain validation in `contact-api/src/__tests__/contact.domain.test.js`
+  - [ ] Add integration tests for `POST /api/contact` in `contact-api/src/__tests__/contact.test.js` — mailer mocked via `jest.mock`
 - Slice 2: Frontend — contact form UI (`draft`)
 - Slice 3: Ops wiring & end-to-end smoke test (`draft`)
 
 ---
 
 ## Important Decisions
+
+- Integration tests mock the mailer module (`jest.mock('../infra/mailer')`) so the test suite has no transport dependency and no real emails are sent during CI.
 
 ---
 

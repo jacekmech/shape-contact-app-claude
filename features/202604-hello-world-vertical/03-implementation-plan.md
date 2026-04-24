@@ -21,11 +21,11 @@
 
 - **Slice 2: Frontend module**
   - **Goal:** Bootstrap the `contact-frontend` Vite + React + MUI application — package setup, config module, App component with hello fetch on mount, success and error render states, Dockerfile, and one component test.
-  - **Status:** `in progress`
+  - **Status:** `done`
 
 - **Slice 3: Ops & middleware**
   - **Goal:** Wire all services together — nginx config in `contact-middleware-nginx`, Docker Compose in `contact-ops` with service definitions, networking, `.env.example`, and environment wiring. Verified by `docker compose up` and a message visible in the browser.
-  - **Status:** `draft`
+  - **Status:** `ready`
 
 ---
 
@@ -40,7 +40,7 @@
   - [x] Add `Dockerfile` — Node 20 Alpine, installs deps, runs `npm start`
   - [x] Add integration test — `GET /api/hello` returns 200 with a `message` field; covers the default value and a custom `HELLO_MESSAGE`
 
-- Slice 2: Frontend module (`in progress`)
+- Slice 2: Frontend module (`done`)
   - [x] Initialize `contact-frontend` project — `package.json` with React 18, Vite 5, MUI v6, Vitest, and React Testing Library; `dev`, `build`, and `test` scripts
   - [x] Add `vite.config.js` — React plugin, dev server on port 3000 with `host: true`, Vitest jsdom environment; add `src/setupTests.js` for Testing Library matchers
   - [x] Add `index.html` and `src/main.jsx` — Vite HTML entry point and React root mount
@@ -49,7 +49,12 @@
   - [x] Add `Dockerfile` — Node 20 Alpine, runs `npm run dev` bound to all interfaces
   - [x] Add component test — mocks `fetch`, asserts message renders on success and error text renders on failure
 
-- Slice 3: Ops & middleware (`draft`)
+- Slice 3: Ops & middleware (`ready`)
+  - [ ] Add `contact-middleware-nginx/nginx.conf` — listens on port 80; routes `/api/` → `http://api:3001` (prefix preserved); routes everything else → `http://frontend:3000` with WebSocket upgrade headers for Vite HMR
+  - [ ] Add `contact-middleware-nginx/Dockerfile` — extends `nginx:alpine`, copies `nginx.conf`
+  - [ ] Add `contact-ops/docker-compose.yml` — three services (`api`, `frontend`, `nginx`) on a shared bridge network; nginx maps port 80 externally; `HELLO_MESSAGE` wired to `api` with default fallback
+  - [ ] Add `contact-ops/.env.example` — documents `HELLO_MESSAGE` with a default value
+  - [ ] Add `contact-ops/.gitignore` — ignores `.env`
 
 ---
 
@@ -59,19 +64,17 @@
 - The Vite dev server runs inside the frontend container for local development; nginx proxies to it. This avoids a static build step in the local developer loop.
 - The frontend calls `/api/hello` as a relative URL (same-origin via nginx). No absolute API URL is needed.
 - Frontend test runner is Vitest (not Jest) — integrates directly with the Vite config; standard choice for Vite projects.
+- nginx does not strip the `/api/` prefix before proxying — the Express app is mounted at `/api`, so the full path must reach the API container unchanged.
 
 ---
 
 ## Relevant Files
 
-- `contact-api/src/app.js` — API contract reference for the frontend fetch
-- `contact-frontend/src/config.js` — to be created; centralizes VITE_API_BASE_URL
-- `contact-frontend/src/App.jsx` — to be created; hello fetch + render
-- `contact-frontend/package.json` — to be created
-- `contact-frontend/Dockerfile` — to be created
-- `contact-middleware-nginx/nginx.conf` — to be created (Slice 3)
-- `contact-ops/docker-compose.yml` — to be created (Slice 3)
-- `contact-ops/.env.example` — to be created (Slice 3)
+- `contact-api/src/index.js` — listens on port 3001; service name needed in Docker Compose
+- `contact-frontend/vite.config.js` — dev server on port 3000 with `host: true`
+- `contact-middleware-nginx/nginx.conf` — to be created; routes /api/ → API, rest → frontend
+- `contact-ops/docker-compose.yml` — to be created; wires all three services
+- `contact-ops/.env.example` — to be created; documents HELLO_MESSAGE
 
 ---
 

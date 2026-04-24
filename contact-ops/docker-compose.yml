@@ -4,6 +4,15 @@ services:
       context: ../contact-api
     environment:
       - HELLO_MESSAGE=${HELLO_MESSAGE:-Hello, world!}
+      - EMAIL_TRANSPORT=${EMAIL_TRANSPORT:-console}
+      - CONTACT_FROM_EMAIL=${CONTACT_FROM_EMAIL:-}
+      - CONTACT_TO_EMAIL=${CONTACT_TO_EMAIL:-}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_SECURE=${SMTP_SECURE:-false}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - EMAIL_LOG_FILE=${EMAIL_LOG_FILE:-}
     networks:
       - app-network
 
